@@ -694,6 +694,11 @@
     .fade-in-delay-2 { transition-delay: 0.2s; }
     .fade-in-delay-3 { transition-delay: 0.3s; }
 
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
     @keyframes fadeSlideUp {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -880,9 +885,10 @@
 // CONFIG: Affiliate IDs — edit these when ready
 // ────────────────────────────────────────────────────────────
 const AFFILIATE = {
-  mercadolivre: 'tecendooself',   // Ex: affiliate_id param
-  amazon:       'tecendooself-20', // Amazon tag
-  shopee:       '18314860902'    // Shopee affiliate
+  mercadolivre: 'ivonel27',        // matt_word / usuário afiliado ML
+  mercadolivreToolId: '50399659',  // matt_tool ML
+  amazon:       'ivonel27-20',     // Amazon tag
+  shopee:       'an_18314860902'   // mmp_pid Shopee
 };
 
 // ────────────────────────────────────────────────────────────
@@ -890,76 +896,232 @@ const AFFILIATE = {
 // ────────────────────────────────────────────────────────────
 const PRODUCTS = [
   {
-    emoji: '🕯️',
+    emoji: '☀️',
     bg: 'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
     badge: 'Favorito',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Vela Aromática de Lavanda',
-    desc: 'Relaxante e deliciosa. Perfeita pra criar um ritual noturno.',
-    price: 'a partir de R$ 32',
-    link: 'https://amzn.to/exemplo-vela?tag=' + AFFILIATE.amazon,
-    slug: 'vela-lavanda'
-  },
-  {
-    emoji: '📓',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #f5ede4 100%)',
-    badge: 'Mais vendido',
     platform: 'Mercado Livre',
     platformIcon: '🛍️',
-    title: 'Diário de Gratidão',
-    desc: 'Caderno guiado para cultivar presença e autoconhecimento.',
-    price: 'a partir de R$ 45',
-    link: 'https://mercadolivre.com.br/p/exemplo?affiliate_id=' + AFFILIATE.mercadolivre,
-    slug: 'diario-gratidao'
+    title: 'Protetor Solar Episol FPS 70',
+    desc: 'Mantecorp, tom 3 médio. Proteção facial de verdade para o dia a dia.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/mantecorp-protetor-solar-facial-episol-fps-70-tom-3-medio/p/MLB19685236?matt_event_ts=1773411931353&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=2a0fac8a-ecb5-4341-926b-76abfb834760',
+    slug: 'protetor-episol-fps70'
+  },
+  {
+    emoji: '☕',
+    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8d8 100%)',
+    badge: 'Recomendo',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Cafeteira Elétrica 15 Xícaras Elgin',
+    desc: 'Coffee Break preta — para começar o dia com carinho.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/cafeteira-eletrica-15-xicaras-elgin-coffee-break-preta/p/MLB40210437?matt_event_ts=1773411938082&matt_d2id=f94167ba-d67a-43bf-8c13-faa23ac1a8e2&matt_tracing_id=bbe14529-a340-45d7-9a49-83484c393bb2',
+    slug: 'cafeteira-elgin'
+  },
+  {
+    emoji: '🛋️',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #f5ede4 100%)',
+    badge: 'Casa',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Manta para Sofá 220x150',
+    desc: 'Decoração e proteção — envio imediato. Aconchego garantido.',
+    price: 'Ver preço →',
+    link: 'https://produto.mercadolivre.com.br/MLB-2060269293-manta-para-sofa-decoraco-proteco-220x150-envio-imediato-_JM?searchVariation=173913458764&matt_event_ts=1773411940980&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=d0d98900-4193-4194-af6e-dfb112319b97',
+    slug: 'manta-sofa'
+  },
+  {
+    emoji: '🕶️',
+    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f9dde2 100%)',
+    badge: 'Estilo',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Óculos Ray-Ban RB2180',
+    desc: 'Lente marrom, haste marrom claro polido. Clássico e atemporal.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/oculos-de-sol-ray-ban-rb2180-616613-cor-da-lente-marron-cor-da-haste-marrom-claro-polido-cor-da-moldura-marrom-claro-cor-da-moldura-marrom-claro-polido/p/MLB41540118?matt_event_ts=1773411973279&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=b840be4d-28c0-4b29-9ad9-86e61dd8f006',
+    slug: 'rayban-rb2180'
   },
   {
     emoji: '🌿',
     bg: 'linear-gradient(135deg, #e8f5e9 0%, #f9dde2 100%)',
-    badge: 'Recomendo',
-    platform: 'Shopee',
-    platformIcon: '🧡',
-    title: 'Kit de Ervas para Chá',
-    desc: 'Blend de camomila, melissa e hortelã para momentos de pausa.',
-    price: 'a partir de R$ 28',
-    link: 'https://shopee.com.br/produto?af=' + AFFILIATE.shopee,
-    slug: 'kit-ervas-cha'
-  },
-  {
-    emoji: '💆',
-    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
-    badge: 'Top',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Rolo de Quartzo Rosa',
-    desc: 'Massageador facial para relaxar e iluminar a pele.',
-    price: 'a partir de R$ 39',
-    link: 'https://amzn.to/exemplo-quartzo?tag=' + AFFILIATE.amazon,
-    slug: 'rolo-quartzo-rosa'
-  },
-  {
-    emoji: '📚',
-    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f9dde2 100%)',
-    badge: 'Leitura essencial',
+    badge: 'Bem-estar',
     platform: 'Mercado Livre',
     platformIcon: '🛍️',
-    title: 'Livro: O Poder do Agora',
-    desc: 'Eckhart Tolle — para quem está em jornada de presença.',
-    price: 'a partir de R$ 35',
-    link: 'https://mercadolivre.com.br/p/exemplo2?affiliate_id=' + AFFILIATE.mercadolivre,
-    slug: 'livro-poder-agora'
+    title: 'Difusor Elétrico de Ambiente 30ml',
+    desc: 'Bivolt, branco. Aromaterapia para transformar seu espaço.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/difusor-eletrico-de-ambiente-bivolt-30ml-branco-grupo-dj-morch/p/MLB47171688?matt_event_ts=1773411976554&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=c7188757-ae9d-4f3a-9b39-d933e8652340',
+    slug: 'difusor-eletrico'
   },
   {
-    emoji: '🛁',
+    emoji: '🧦',
+    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
+    badge: 'Kit',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Kit 12 Pares Meias Puma',
+    desc: 'Sapatilha invisível esportiva — barato e de qualidade.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/kit-12-pares-meias-esportiva-sapatilha-invisivel-puma-barato/up/MLBU3351354108?pdp_filters=item_id%3AMLB5552501948&matt_event_ts=1773411979941&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=3e59aabd-3e81-4d84-9fe0-d3229eaebf77',
+    slug: 'meias-puma-kit'
+  },
+  {
+    emoji: '🔌',
     bg: 'linear-gradient(135deg, #e8f0fe 0%, #f9dde2 100%)',
-    badge: 'Ritual',
+    badge: 'Smart',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Tomada Inteligente Wi-Fi',
+    desc: 'Universal, smart home. Controle tudo pelo celular.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/tomada-inteligente-wi-fi-universal-smart-cor-branco/p/MLB47086075#wid=MLB4463339833',
+    slug: 'tomada-wifi-smart'
+  },
+  {
+    emoji: '🛏️',
+    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8d8 100%)',
+    badge: 'Casa',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Jogo de Lençol Casal 400 Fios',
+    desc: 'Percal 3 peças, 30cm de altura. Sono de qualidade começa aqui.',
+    price: 'Ver preço →',
+    link: 'https://produto.mercadolivre.com.br/MLB-2642136858-jogo-de-lencol-casal-3-pecas-400-fios-percal-30cm-altura-_JM?searchVariation=174511729422&matt_event_ts=1773411991163&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=f274ffc6-b057-41e5-a788-ae68f63b4b99',
+    slug: 'lencol-casal-400fios'
+  },
+  {
+    emoji: '🚗',
+    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f5ede4 100%)',
+    badge: 'Tech',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Adaptador Mini Xuda CarPlay Sem Fio',
+    desc: 'Android Auto e Apple CarPlay wireless. Conecte sem fios.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/adaptador-mini-xuda-para-carplay-sem-fio-e-android-auto/up/MLBU3272821621?pdp_filters=item_id%3AMLB5478283708&matt_event_ts=1773412065876&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=8cfd9894-3c15-49ce-9bae-10a96b7c013a',
+    slug: 'carplay-sem-fio'
+  },
+  {
+    emoji: '🎧',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #e8f0fe 100%)',
+    badge: 'Acessório',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Almofadas JBL Tune 520BT / 510BT',
+    desc: 'Par de espumas compatíveis para fone JBL. Conforto renovado.',
+    price: 'Ver preço →',
+    link: 'https://produto.mercadolivre.com.br/MLB-4044928335-par-almofadas-espumas-compativeis-jbl-tune-520bt-510bt-_JM?searchVariation=187690025601&matt_event_ts=1773411946451&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=735cbfbb-3afb-47a0-ab2b-2bd5bd319b36',
+    slug: 'almofadas-jbl-tune'
+  },
+  {
+    emoji: '👟',
+    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8e8 100%)',
+    badge: 'Moda',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Tênis Casual Kappa Zenit Masculino',
+    desc: 'Estilo e conforto para o cotidiano.',
+    price: 'Ver preço →',
+    link: 'https://produto.mercadolivre.com.br/MLB-5408593708-tnis-casual-kappa-zenit-masculino-_JM?searchVariation=192828328481&matt_event_ts=1773411944072&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=e1a83407-1852-4477-b9cb-052d5de9075e',
+    slug: 'tenis-kappa-zenit'
+  },
+  {
+    emoji: '🛒',
+    bg: 'linear-gradient(135deg, #fde8d8 0%, #fdf3e3 100%)',
+    badge: 'Amazon',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Produto Amazon 1',
+    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B09RL3X7R9?tag=ivonel27-20',
+    slug: 'amazon-b09rl3x7r9'
+  },
+  {
+    emoji: '🛒',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #fde8d8 100%)',
+    badge: 'Amazon',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Produto Amazon 2',
+    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B0F158B1BR?tag=ivonel27-20',
+    slug: 'amazon-b0f158b1br'
+  },
+  {
+    emoji: '🛒',
+    bg: 'linear-gradient(135deg, #f5ede4 0%, #f9dde2 100%)',
+    badge: 'Amazon',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Produto Amazon 3',
+    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B0FWCTHSWQ?tag=ivonel27-20',
+    slug: 'amazon-b0fwcthswq'
+  },
+  {
+    emoji: '🛒',
+    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
+    badge: 'Amazon',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Produto Amazon 4',
+    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B076N2S8FV?tag=ivonel27-20',
+    slug: 'amazon-b076n2s8fv'
+  },
+  {
+    emoji: '🛒',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #fde8d8 100%)',
+    badge: 'Amazon',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Produto Amazon 5',
+    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B0CC6FHCM2?tag=ivonel27-20',
+    slug: 'amazon-b0cc6fhcm2'
+  },
+  {
+    emoji: '🛍️',
+    bg: 'linear-gradient(135deg, #fff3e0 0%, #f9dde2 100%)',
+    badge: 'Shopee',
     platform: 'Shopee',
     platformIcon: '🧡',
-    title: 'Sal de Banho Relaxante',
-    desc: 'Com óleos essenciais de eucalipto e lavanda. Cuidado de verdade.',
-    price: 'a partir de R$ 22',
-    link: 'https://shopee.com.br/produto2?af=' + AFFILIATE.shopee,
-    slug: 'sal-banho'
+    title: 'Produto Shopee 1',
+    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://shopee.com.br/product/321998304/23494296658?mmp_pid=an_18314860902',
+    slug: 'shopee-321998304-1'
+  },
+  {
+    emoji: '🛍️',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #fff3e0 100%)',
+    badge: 'Shopee',
+    platform: 'Shopee',
+    platformIcon: '🧡',
+    title: 'Produto Shopee 2',
+    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://shopee.com.br/product/422716071/18063375744?mmp_pid=an_18314860902',
+    slug: 'shopee-422716071-2'
+  },
+  {
+    emoji: '🛍️',
+    bg: 'linear-gradient(135deg, #fde8d8 0%, #fff3e0 100%)',
+    badge: 'Shopee',
+    platform: 'Shopee',
+    platformIcon: '🧡',
+    title: 'Produto Shopee 3',
+    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
+    price: 'Ver preço →',
+    link: 'https://shopee.com.br/product/1649541164/58201815473?mmp_pid=an_18314860902',
+    slug: 'shopee-1649541164-3'
   }
 ];
 
@@ -976,22 +1138,25 @@ function detectPlatform(url) {
 function buildAffiliateLink(url, platform) {
   try {
     if (platform === 'amazon') {
+      // Amazon: mantém a URL original com a tag de afiliado
       const obj = new URL(url);
       obj.searchParams.set('tag', AFFILIATE.amazon);
       return obj.toString();
     }
     if (platform === 'mercadolivre') {
-      const obj = new URL(url);
-      obj.searchParams.set('affiliate_id', AFFILIATE.mercadolivre);
-      return obj.toString();
+      // Mercado Livre: redireciona pelo perfil social de afiliado (padrão ivonel27)
+      // Codifica a URL original no parâmetro ref
+      const encoded = btoa(encodeURIComponent(url)).replace(/=/g, '');
+      return `https://www.mercadolivre.com.br/social/${AFFILIATE.mercadolivre}?matt_word=${AFFILIATE.mercadolivre}&matt_tool=${AFFILIATE.mercadolivreToolId}&forceInApp=true&ref_url=${encodeURIComponent(url)}`;
     }
     if (platform === 'shopee') {
+      // Shopee: adiciona o mmp_pid de afiliado
       const obj = new URL(url);
-      obj.searchParams.set('af', AFFILIATE.shopee);
+      obj.searchParams.set('mmp_pid', AFFILIATE.shopee);
       return obj.toString();
     }
   } catch(_) {}
-  return url + (url.includes('?') ? '&' : '?') + 'ref=' + AFFILIATE[platform];
+  return url;
 }
 
 // ────────────────────────────────────────────────────────────
@@ -1042,38 +1207,156 @@ function renderVisited() {
 }
 
 // ────────────────────────────────────────────────────────────
-// RENDER PRODUCTS
+// ML TRENDING — busca produtos populares via API pública
 // ────────────────────────────────────────────────────────────
-function renderProducts() {
-  const grid = document.getElementById('products-grid');
-  grid.innerHTML = PRODUCTS.map((p, i) => `
-    <a class="product-card fade-in" href="${p.link}" target="_blank" rel="noopener"
-       style="transition-delay: ${i * 0.07}s"
-       data-slug="${p.slug}" data-title="${p.title}" data-platform="${p.platform}" data-link="${p.link}">
-      <div class="product-thumb" style="background: ${p.bg}">
-        <span class="product-emoji">${p.emoji}</span>
-        <span class="product-badge">${p.badge}</span>
+
+// Termos de busca rotativos para variar os cards a cada visita
+const ML_SEARCH_TERMS = [
+  'cuidados pessoais', 'autocuidado', 'skincare', 'aromaterapia',
+  'organizacao casa', 'lencol cama', 'vela aromatica', 'difusor essencia'
+];
+
+function buildMLAffiliateLink(mlUrl) {
+  try {
+    const obj = new URL(mlUrl);
+    obj.searchParams.set('matt_word', AFFILIATE.mercadolivre);
+    obj.searchParams.set('matt_tool', AFFILIATE.mercadolivreToolId);
+    return obj.toString();
+  } catch(_) { return mlUrl; }
+}
+
+async function fetchMLTrending(query, limit = 6) {
+  const term = encodeURIComponent(query);
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${term}&sort=sold_quantity&limit=${limit}&condition=new`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data.results || []).map(item => ({
+      id: item.id,
+      title: item.title,
+      price: item.price ? 'R$ ' + item.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : 'Ver preço',
+      thumbnail: item.thumbnail ? item.thumbnail.replace('http://', 'https://').replace('-I.jpg', '-O.jpg') : null,
+      link: buildMLAffiliateLink(item.permalink),
+      platform: 'Mercado Livre',
+      platformIcon: '🛍️',
+      badge: 'Tendência',
+      slug: 'ml-' + item.id
+    }));
+  } catch(_) { return []; }
+}
+
+// ────────────────────────────────────────────────────────────
+// RENDER CARD — usado tanto para histórico quanto trending
+// ────────────────────────────────────────────────────────────
+const BG_POOL = [
+  'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
+  'linear-gradient(135deg, #f9dde2 0%, #f5ede4 100%)',
+  'linear-gradient(135deg, #e8f5e9 0%, #f9dde2 100%)',
+  'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
+  'linear-gradient(135deg, #fdf3e3 0%, #f9dde2 100%)',
+  'linear-gradient(135deg, #e8f0fe 0%, #f9dde2 100%)',
+];
+
+function cardHTML(item, index, badge, isHistory = false) {
+  const bg = BG_POOL[index % BG_POOL.length];
+  const thumb = item.thumbnail
+    ? `<img src="${item.thumbnail}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;border-radius:0;" loading="lazy" />`
+    : `<span style="font-size:2.8rem">🛍️</span>`;
+  const badgeLabel = isHistory ? '✦ Visto por você' : badge;
+  const titleShort = item.title.length > 52 ? item.title.slice(0, 52) + '…' : item.title;
+  return `
+    <a class="product-card fade-in" href="${item.link}" target="_blank" rel="noopener"
+       style="transition-delay: ${index * 0.07}s"
+       data-slug="${item.slug}" data-title="${item.title}" data-platform="${item.platform}" data-link="${item.link}">
+      <div class="product-thumb" style="background:${bg}; overflow:hidden;">
+        ${thumb}
+        <span class="product-badge" style="${isHistory ? 'background:var(--taupe)' : ''}">${badgeLabel}</span>
       </div>
       <div class="product-body">
-        <span class="product-platform">${p.platformIcon} ${p.platform}</span>
-        <h3 class="product-title">${p.title}</h3>
-        <p class="product-desc">${p.desc}</p>
-        <p class="product-price">${p.price}</p>
+        <span class="product-platform">${item.platformIcon} ${item.platform}</span>
+        <h3 class="product-title">${titleShort}</h3>
+        <p class="product-price">${item.price}</p>
         <span class="product-cta">Ver produto
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
-    </a>
-  `).join('');
+    </a>`;
+}
 
-  // Track clicks on product cards
+function showProductsSkeleton(count = 6) {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = Array.from({length: count}).map(() => `
+    <div class="product-card" style="pointer-events:none;">
+      <div class="product-thumb" style="background:var(--blush); animation: pulse 1.4s ease-in-out infinite;">
+        <div style="width:60%;height:24px;background:rgba(255,255,255,0.5);border-radius:8px;"></div>
+      </div>
+      <div class="product-body" style="gap:0.6rem; display:flex; flex-direction:column;">
+        <div style="height:12px;background:var(--blush);border-radius:6px;width:40%;animation:pulse 1.4s ease-in-out infinite;"></div>
+        <div style="height:16px;background:var(--blush);border-radius:6px;animation:pulse 1.4s ease-in-out infinite;"></div>
+        <div style="height:16px;background:var(--blush);border-radius:6px;width:80%;animation:pulse 1.4s ease-in-out infinite;"></div>
+        <div style="height:20px;background:var(--blush);border-radius:6px;width:50%;margin-top:0.4rem;animation:pulse 1.4s ease-in-out infinite;"></div>
+      </div>
+    </div>`).join('');
+}
+
+// ────────────────────────────────────────────────────────────
+// RENDER PRODUCTS — histórico + trending ML
+// ────────────────────────────────────────────────────────────
+async function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  showProductsSkeleton(6);
+
+  // 1. Pega histórico de cookies
+  const visited = getCookieVisited();
+  const historyItems = visited.slice(0, 3).map(v => ({
+    id: v.slug,
+    title: v.title,
+    price: 'Ver preço →',
+    thumbnail: null,
+    link: v.link,
+    platform: v.platform || 'Mercado Livre',
+    platformIcon: v.platform === 'Amazon' ? '📦' : v.platform === 'Shopee' ? '🧡' : '🛍️',
+    badge: 'Visto por você',
+    slug: v.slug
+  }));
+
+  // 2. Quantos trending buscar (completa até 6 cards)
+  const trendingNeeded = Math.max(3, 12 - historyItems.length);
+  const term = ML_SEARCH_TERMS[Math.floor(Math.random() * ML_SEARCH_TERMS.length)];
+  const trendingItems = await fetchMLTrending(term, trendingNeeded + 2);
+
+  // 3. Monta lista: histórico primeiro, depois trending (sem duplicatas)
+  const histSlugs = new Set(historyItems.map(h => h.slug));
+  const trendingFiltered = trendingItems.filter(t => !histSlugs.has(t.slug)).slice(0, trendingNeeded);
+  const allItems = [...historyItems, ...trendingFiltered].slice(0, 12);
+
+  // 4. Fallback se API falhou
+  if (allItems.length === 0) {
+    grid.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;grid-column:1/-1;text-align:center;padding:2rem 0;">
+      Use a ferramenta acima para converter qualquer link em link de indicação 🌸
+    </p>`;
+    return;
+  }
+
+  // 5. Renderiza
+  const label = historyItems.length > 0
+    ? `✦ baseado em você + tendências`
+    : `✦ tendências do Mercado Livre`;
+  document.querySelector('.section-label').textContent = label;
+
+  grid.innerHTML = allItems.map((item, i) =>
+    cardHTML(item, i, item.badge, historyItems.some(h => h.slug === item.slug))
+  ).join('');
+
+  // 6. Track cliques
   grid.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
-      const slug = card.dataset.slug;
-      const product = PRODUCTS.find(p => p.slug === slug);
-      if (product) addVisited(product);
+      addVisitedFromUrl(card.dataset.link, card.dataset.platform?.toLowerCase() || 'mercadolivre', card.dataset.link);
     });
   });
+
+  observeFadeIns();
 }
 
 // ────────────────────────────────────────────────────────────
@@ -1215,7 +1498,7 @@ function observeFadeIns() {
 // ────────────────────────────────────────────────────────────
 // INIT
 // ────────────────────────────────────────────────────────────
-renderProducts();
+renderProducts(); // async — busca ML API + histórico
 renderVisited();
 observeFadeIns();
 
