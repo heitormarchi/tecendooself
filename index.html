@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tecendo o Self — Links com Amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rose:    #f2b8c0;
+      --blush:   #f9dde2;
+      --cream:   #fdf6f0;
+      --linen:   #f5ede4;
+      --taupe:   #c9a99a;
+      --brown:   #8b6357;
+      --text:    #4a3530;
+      --muted:   #a08070;
+      --white:   #ffffff;
+      --shadow:  rgba(140, 90, 80, 0.10);
+      --shadow2: rgba(140, 90, 80, 0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--linen); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 246, 240, 0.72);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      border-bottom: 1px solid rgba(242, 184, 192, 0.3);
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    nav.scrolled {
+      background: rgba(253, 246, 240, 0.92);
+      box-shadow: 0 2px 24px var(--shadow);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--brown);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo .italic { font-style: italic; }
+    .nav-logo .regular { font-style: normal; color: var(--taupe); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--brown); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-instagram {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--taupe);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.25s;
+    }
+    .nav-instagram:hover { color: var(--brown); }
+    .nav-instagram svg { width: 16px; height: 16px; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 100px 2rem 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 90%, rgba(242,184,192,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 10%, rgba(249,221,226,0.35) 0%, transparent 55%),
+        var(--cream);
+    }
+
+    /* Decorative petals */
+    .hero::before, .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50% 50% 50% 50% / 40% 60% 40% 60%;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 320px; height: 320px;
+      background: var(--rose);
+      top: -60px; right: -80px;
+      transform: rotate(20deg);
+    }
+    .hero::after {
+      width: 200px; height: 200px;
+      background: var(--taupe);
+      bottom: 40px; left: -60px;
+      transform: rotate(-15deg);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--brown);
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+    }
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      color: var(--taupe);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    .scroll-hint svg { width: 18px; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.97rem;
+      margin-bottom: 2.4rem;
+      font-weight: 300;
+    }
+
+    /* ── HERO TOOL (inline on hero) ── */
+    .hero-tool {
+      width: 100%;
+      max-width: 560px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 8px 40px var(--shadow2);
+      border: 1px solid rgba(242, 184, 192, 0.35);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .input-row input {
+      flex: 1;
+      padding: 0.85rem 1.1rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 12px;
+      font-size: 0.93rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      min-width: 0;
+    }
+    .input-row input:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(242, 184, 192, 0.2);
+      background: var(--white);
+    }
+    .input-row input::placeholder { color: var(--taupe); opacity: 0.75; }
+
+    .btn-paste {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.85rem 1.1rem;
+      background: var(--blush);
+      color: var(--brown);
+      border: 1.5px solid rgba(242,184,192,0.5);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.22s;
+    }
+    .btn-paste:hover { background: var(--rose); color: var(--white); border-color: var(--rose); }
+
+    .platform-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--brown);
+      background: rgba(242,184,192,0.18);
+      border: 1px solid rgba(242,184,192,0.4);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 0.8rem;
+      width: fit-content;
+      font-weight: 500;
+      animation: fadeSlideUp 0.3s ease;
+    }
+    .platform-indicator .pi-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--brown);
+    }
+
+    /* ── CONTACT AVATAR IMAGE ── */
+    .contact-avatar-img {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      margin: 0 auto 1.6rem;
+      overflow: hidden;
+      border: 3px solid var(--rose);
+      box-shadow: 0 4px 24px rgba(242,184,192,0.45);
+    }
+    .contact-avatar-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── TOOL CARD (kept for layout pieces reused) ── */
+    .tool-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.4rem;
+      box-shadow: 0 4px 32px var(--shadow);
+      border: 1px solid rgba(242, 184, 192, 0.25);
+    }
+
+    .platform-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+      flex-wrap: wrap;
+    }
+    .platform-tab {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--blush);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.25s ease;
+    }
+    .platform-tab:hover { border-color: var(--rose); color: var(--brown); }
+    .platform-tab.active {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(242,184,192,0.4);
+    }
+    .platform-tab .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid var(--blush);
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .input-group input:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(242, 184, 192, 0.2);
+      background: var(--white);
+    }
+    .input-group input::placeholder { color: var(--taupe); opacity: 0.7; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--brown) 0%, #c47a6a 100%);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      letter-spacing: 0.03em;
+      margin-top: 0.6rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(139, 99, 87, 0.3);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .result-box {
+      margin-top: 1.4rem;
+      padding: 1.2rem;
+      background: var(--linen);
+      border-radius: 12px;
+      border: 1.5px solid rgba(242, 184, 192, 0.4);
+      display: none;
+      animation: fadeSlideUp 0.35s ease;
+    }
+    .result-box.visible { display: block; }
+    .result-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .result-link {
+      font-size: 0.88rem;
+      color: var(--brown);
+      word-break: break-all;
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .result-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn-copy, .btn-open {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.22s;
+    }
+    .btn-copy {
+      background: var(--rose);
+      color: var(--white);
+      border: none;
+      box-shadow: 0 2px 12px rgba(242,184,192,0.35);
+    }
+    .btn-copy:hover { background: var(--brown); box-shadow: 0 4px 18px rgba(139,99,87,0.2); }
+    .btn-open {
+      background: transparent;
+      color: var(--brown);
+      border: 1.5px solid var(--rose);
+    }
+    .btn-open:hover { background: var(--blush); }
+    .btn-copy svg, .btn-open svg { width: 13px; height: 13px; }
+
+    .error-msg {
+      color: #c0544a;
+      font-size: 0.82rem;
+      margin-top: 0.6rem;
+      padding: 0.5rem 0.8rem;
+      background: rgba(192, 84, 74, 0.07);
+      border-radius: 8px;
+      display: none;
+    }
+    .error-msg.visible { display: block; }
+
+    .platform-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1.2rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ── PRODUCTS ── */
+    #produtos {
+      padding: 80px 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .products-header {
+      text-align: center;
+      margin-bottom: 3.2rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(242, 184, 192, 0.2);
+      box-shadow: 0 2px 16px var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px var(--shadow2);
+      border-color: rgba(242, 184, 192, 0.6);
+    }
+
+    .product-thumb {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-emoji {
+      font-size: 3.5rem;
+      z-index: 1;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--rose);
+      color: var(--white);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .product-body { padding: 1.2rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+    .product-platform {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      flex: 1;
+    }
+    .product-price {
+      font-size: 1.05rem;
+      color: var(--brown);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--brown);
+      text-decoration: none;
+      border: 1.5px solid var(--rose);
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      transition: all 0.25s;
+      align-self: flex-start;
+    }
+    .product-cta:hover { background: var(--rose); color: var(--white); }
+
+    /* Recently viewed */
+    #visitados { padding: 20px 2rem 80px; max-width: 1100px; margin: 0 auto; }
+    #visitados-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+    .visited-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      border: 1px solid rgba(242, 184, 192, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.82rem;
+    }
+    .visited-title { font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .visited-platform { font-size: 0.72rem; color: var(--taupe); }
+    .visited-link { color: var(--brown); font-size: 0.75rem; text-decoration: none; }
+    .visited-link:hover { text-decoration: underline; }
+
+    /* ── DIVIDER ── */
+    .wavy-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .wavy-divider svg { display: block; width: 100%; }
+
+    /* ── CONTACT ── */
+    #contato {
+      background: var(--linen);
+      padding: 80px 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #contato::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 70%);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+    .contact-inner { max-width: 540px; margin: 0 auto; position: relative; }
+    .contact-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 1.6rem;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--taupe) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 24px rgba(242,184,192,0.4);
+    }
+    .contact-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .contact-bio {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+    .contact-insta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%);
+      color: var(--white);
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(225, 48, 108, 0.25);
+    }
+    .contact-insta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(225, 48, 108, 0.35);
+    }
+    .contact-insta-btn svg { width: 20px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      padding: 1.6rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--blush);
+      font-size: 0.78rem;
+      color: var(--taupe);
+    }
+    footer a { color: var(--brown); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--brown);
+      color: var(--white);
+      padding: 0.7rem 1.6rem;
+      border-radius: 100px;
+      font-size: 0.87rem;
+      font-weight: 500;
+      pointer-events: none;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      opacity: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 24px rgba(139,99,87,0.3);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .hero-tool { padding: 1.4rem 1.1rem; }
+      .input-row { flex-direction: column; }
+      .btn-paste { justify-content: center; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .product-thumb { height: 130px; }
+      .product-emoji { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo"><span class="italic">tecendo</span> <span class="regular">o</span> <span class="italic">self</span></a>
+  <ul class="nav-links">
+    <li><a href="#ferramenta">Converter</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="https://instagram.com/tecendooself" target="_blank" class="nav-instagram" title="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+    @tecendooself
+  </a>
+</nav>
+
+<!-- ── HERO (with tool inline) ── -->
+<section class="hero" id="inicio">
+  <p class="hero-eyebrow fade-in">✦ links de afiliada com carinho</p>
+  <h1 class="fade-in fade-in-delay-1">
+    Encontre o que você ama<br/><em>e apoie quem cuida de você</em>
+  </h1>
+  <p class="hero-sub fade-in fade-in-delay-2">
+    Cole o link de qualquer produto do Mercado Livre, Amazon ou Shopee e receba o link com o código de indicação — sem custo extra pra você.
+  </p>
+
+  <div class="hero-tool fade-in fade-in-delay-3">
+    <div class="input-row">
+      <input id="link-input" type="url" placeholder="Cole aqui o link do produto…" autocomplete="off" />
+      <button class="btn-paste" id="paste-btn" title="Colar da área de transferência">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+        Colar
+      </button>
+    </div>
+    <div id="platform-indicator" class="platform-indicator" style="display:none"></div>
+    <button class="btn-primary" id="generate-btn">Gerar link de indicação ✨</button>
+    <p class="error-msg" id="error-msg"></p>
+
+    <div class="result-box" id="result-box">
+      <span class="result-label">✦ seu link com indicação</span>
+      <span class="result-link" id="result-link"></span>
+      <div class="result-actions">
+        <button class="btn-copy" id="copy-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar link
+        </button>
+        <a class="btn-open" id="open-btn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          Abrir produto
+        </a>
+      </div>
+    </div>
+
+    <p class="platform-note">
+      🌸 Ao usar estes links, você não paga nada a mais — apenas ajuda a apoiar o projeto <strong>Tecendo o Self</strong>.
+    </p>
+  </div>
+
+  <div class="scroll-hint fade-in" style="transition-delay:0.6s; margin-top:1.6rem;">
+    <span>produtos recomendados</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── WAVY ── -->
+<div class="wavy-divider">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C240,60 480,-12 720,24 C960,60 1200,-12 1440,24 L1440,48 L0,48 Z" fill="#f5ede4"/>
+  </svg>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<section id="produtos" style="background:var(--linen); padding-bottom:80px;">
+  <div style="max-width:1100px; margin:0 auto; padding:80px 2rem 40px;">
+    <div class="products-header fade-in">
+      <span class="section-label">✦ favoritos da curadoria</span>
+      <h2 class="section-title">Produtos que eu amo 🌷</h2>
+      <p class="section-desc" style="max-width:460px; margin:0 auto;">Uma seleção carinhosa — clique no produto para abrir com o link de indicação.</p>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+      <!-- Cards generated by JS below -->
+    </div>
+  </div>
+</section>
+
+<!-- ── RECENTLY VIEWED ── -->
+<section id="visitados" style="display:none;">
+  <div class="fade-in">
+    <span class="section-label">✦ você viu recentemente</span>
+    <h2 class="section-title" style="margin-bottom:0.5rem; font-size:1.6rem;">Baseado no seu histórico</h2>
+    <p class="section-desc">Links que você clicou antes — já com o código de indicação. 🌸</p>
+  </div>
+  <div id="visitados-grid" class="fade-in fade-in-delay-1"></div>
+</section>
+
+<!-- ── DIVIDER 2 ── -->
+<div class="wavy-divider" style="transform: scaleY(-1) scaleX(-1);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C240,60 480,-12 720,24 C960,60 1200,-12 1440,24 L1440,48 L0,48 Z" fill="#f5ede4"/>
+  </svg>
+</div>
+
+<!-- ── CONTACT ── -->
+<section id="contato">
+  <div class="contact-inner fade-in">
+    <div class="contact-avatar-img">
+      <img src="https://instagram.fnvt11-1.fna.fbcdn.net/v/t51.82787-19/627176751_18179173732373684_7574800806677344050_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fnvt11-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2QHruDn6DrFQwVbySene5rBBxLmINDS8OsOu8lWjkKKq9TnNSkswTKjYlDT-gb7iE18&_nc_ohc=iM3fu4EJjNsQ7kNvwGLPbUQ&_nc_gid=Dx4xiypbuZ4brAgJW7vDyg&edm=APoiHPcBAAAA&ccb=7-5&oh=00_AfyDSKVTh5-cK7h_TLw-MsXJxNClnOGEIRDwgEflfs1WqA&oe=69B9DE92&_nc_sid=22de04" alt="Tecendo o Self" />
+    </div>
+    <h2 class="contact-name">Tecendo o Self</h2>
+    <p class="contact-bio">
+      Um espaço de autoconhecimento, cuidado e escolhas conscientes.<br/>
+      Me acompanhe no Instagram para dicas, recomendações e muito carinho. 💕
+    </p>
+    <a href="https://instagram.com/tecendooself" target="_blank" class="contact-insta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1.5" fill="white" stroke="none"/>
+      </svg>
+      @tecendooself no Instagram
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Tecendo o Self · Feito com muito amor 🌸 · <a href="https://instagram.com/tecendooself" target="_blank">@tecendooself</a></p>
+</footer>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">Link copiado!</span>
+</div>
+
+<script>
+// ────────────────────────────────────────────────────────────
+// CONFIG: Affiliate IDs — edit these when ready
+// ────────────────────────────────────────────────────────────
+const AFFILIATE = {
+  mercadolivre: 'tecendooself',   // Ex: affiliate_id param
+  amazon:       'tecendooself-20', // Amazon tag
+  shopee:       '18314860902'    // Shopee affiliate
+};
+
+// ────────────────────────────────────────────────────────────
+// CURATED PRODUCTS — update links with real affiliate URLs
+// ────────────────────────────────────────────────────────────
+const PRODUCTS = [
+  {
+    emoji: '🕯️',
+    bg: 'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
+    badge: 'Favorito',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Vela Aromática de Lavanda',
+    desc: 'Relaxante e deliciosa. Perfeita pra criar um ritual noturno.',
+    price: 'a partir de R$ 32',
+    link: 'https://amzn.to/exemplo-vela?tag=' + AFFILIATE.amazon,
+    slug: 'vela-lavanda'
+  },
+  {
+    emoji: '📓',
+    bg: 'linear-gradient(135deg, #f9dde2 0%, #f5ede4 100%)',
+    badge: 'Mais vendido',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Diário de Gratidão',
+    desc: 'Caderno guiado para cultivar presença e autoconhecimento.',
+    price: 'a partir de R$ 45',
+    link: 'https://mercadolivre.com.br/p/exemplo?affiliate_id=' + AFFILIATE.mercadolivre,
+    slug: 'diario-gratidao'
+  },
+  {
+    emoji: '🌿',
+    bg: 'linear-gradient(135deg, #e8f5e9 0%, #f9dde2 100%)',
+    badge: 'Recomendo',
+    platform: 'Shopee',
+    platformIcon: '🧡',
+    title: 'Kit de Ervas para Chá',
+    desc: 'Blend de camomila, melissa e hortelã para momentos de pausa.',
+    price: 'a partir de R$ 28',
+    link: 'https://shopee.com.br/produto?af=' + AFFILIATE.shopee,
+    slug: 'kit-ervas-cha'
+  },
+  {
+    emoji: '💆',
+    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
+    badge: 'Top',
+    platform: 'Amazon',
+    platformIcon: '📦',
+    title: 'Rolo de Quartzo Rosa',
+    desc: 'Massageador facial para relaxar e iluminar a pele.',
+    price: 'a partir de R$ 39',
+    link: 'https://amzn.to/exemplo-quartzo?tag=' + AFFILIATE.amazon,
+    slug: 'rolo-quartzo-rosa'
+  },
+  {
+    emoji: '📚',
+    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f9dde2 100%)',
+    badge: 'Leitura essencial',
+    platform: 'Mercado Livre',
+    platformIcon: '🛍️',
+    title: 'Livro: O Poder do Agora',
+    desc: 'Eckhart Tolle — para quem está em jornada de presença.',
+    price: 'a partir de R$ 35',
+    link: 'https://mercadolivre.com.br/p/exemplo2?affiliate_id=' + AFFILIATE.mercadolivre,
+    slug: 'livro-poder-agora'
+  },
+  {
+    emoji: '🛁',
+    bg: 'linear-gradient(135deg, #e8f0fe 0%, #f9dde2 100%)',
+    badge: 'Ritual',
+    platform: 'Shopee',
+    platformIcon: '🧡',
+    title: 'Sal de Banho Relaxante',
+    desc: 'Com óleos essenciais de eucalipto e lavanda. Cuidado de verdade.',
+    price: 'a partir de R$ 22',
+    link: 'https://shopee.com.br/produto2?af=' + AFFILIATE.shopee,
+    slug: 'sal-banho'
+  }
+];
+
+// ────────────────────────────────────────────────────────────
+// AFFILIATE LINK BUILDER
+// ────────────────────────────────────────────────────────────
+function detectPlatform(url) {
+  if (url.includes('mercadolivre') || url.includes('mercadolibre') || url.includes('mlstatic')) return 'mercadolivre';
+  if (url.includes('amazon.com') || url.includes('amzn.to') || url.includes('amzn.com')) return 'amazon';
+  if (url.includes('shopee')) return 'shopee';
+  return null;
+}
+
+function buildAffiliateLink(url, platform) {
+  try {
+    if (platform === 'amazon') {
+      const obj = new URL(url);
+      obj.searchParams.set('tag', AFFILIATE.amazon);
+      return obj.toString();
+    }
+    if (platform === 'mercadolivre') {
+      const obj = new URL(url);
+      obj.searchParams.set('affiliate_id', AFFILIATE.mercadolivre);
+      return obj.toString();
+    }
+    if (platform === 'shopee') {
+      const obj = new URL(url);
+      obj.searchParams.set('af', AFFILIATE.shopee);
+      return obj.toString();
+    }
+  } catch(_) {}
+  return url + (url.includes('?') ? '&' : '?') + 'ref=' + AFFILIATE[platform];
+}
+
+// ────────────────────────────────────────────────────────────
+// COOKIES: recently viewed products
+// ────────────────────────────────────────────────────────────
+const COOKIE_KEY = 'tself_visited';
+
+function getCookieVisited() {
+  try {
+    const c = document.cookie.split(';').find(x => x.trim().startsWith(COOKIE_KEY + '='));
+    if (!c) return [];
+    return JSON.parse(decodeURIComponent(c.split('=').slice(1).join('=')));
+  } catch(_) { return []; }
+}
+
+function saveCookieVisited(arr) {
+  const expires = new Date(Date.now() + 30*24*60*60*1000).toUTCString();
+  document.cookie = COOKIE_KEY + '=' + encodeURIComponent(JSON.stringify(arr.slice(0, 10))) + '; expires=' + expires + '; path=/; SameSite=Lax';
+}
+
+function addVisited(product) {
+  const visited = getCookieVisited().filter(v => v.slug !== product.slug);
+  visited.unshift({ slug: product.slug, title: product.title, platform: product.platform, link: product.link });
+  saveCookieVisited(visited);
+}
+
+function addVisitedFromUrl(url, platform, finalLink) {
+  const visited = getCookieVisited().filter(v => v.slug !== url);
+  const domain = platform.charAt(0).toUpperCase() + platform.slice(1);
+  visited.unshift({ slug: url, title: 'Produto visitado — ' + domain, platform: domain, link: finalLink });
+  saveCookieVisited(visited);
+  renderVisited();
+}
+
+function renderVisited() {
+  const visited = getCookieVisited();
+  const section = document.getElementById('visitados');
+  const grid = document.getElementById('visitados-grid');
+  if (!visited.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  grid.innerHTML = visited.map(v => `
+    <div class="visited-card">
+      <span class="visited-title">${v.title}</span>
+      <span class="visited-platform">${v.platform}</span>
+      <a class="visited-link" href="${v.link}" target="_blank" rel="noopener">Ver produto →</a>
+    </div>
+  `).join('');
+}
+
+// ────────────────────────────────────────────────────────────
+// RENDER PRODUCTS
+// ────────────────────────────────────────────────────────────
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = PRODUCTS.map((p, i) => `
+    <a class="product-card fade-in" href="${p.link}" target="_blank" rel="noopener"
+       style="transition-delay: ${i * 0.07}s"
+       data-slug="${p.slug}" data-title="${p.title}" data-platform="${p.platform}" data-link="${p.link}">
+      <div class="product-thumb" style="background: ${p.bg}">
+        <span class="product-emoji">${p.emoji}</span>
+        <span class="product-badge">${p.badge}</span>
+      </div>
+      <div class="product-body">
+        <span class="product-platform">${p.platformIcon} ${p.platform}</span>
+        <h3 class="product-title">${p.title}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <p class="product-price">${p.price}</p>
+        <span class="product-cta">Ver produto
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+  `).join('');
+
+  // Track clicks on product cards
+  grid.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const slug = card.dataset.slug;
+      const product = PRODUCTS.find(p => p.slug === slug);
+      if (product) addVisited(product);
+    });
+  });
+}
+
+// ────────────────────────────────────────────────────────────
+// PASTE BUTTON
+// ────────────────────────────────────────────────────────────
+document.getElementById('paste-btn').addEventListener('click', async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    const input = document.getElementById('link-input');
+    input.value = text.trim();
+    input.dispatchEvent(new Event('input'));
+    input.focus();
+    showToast('Link colado! 🌸');
+  } catch(_) {
+    showToast('Permita o acesso à área de transferência 🌸');
+  }
+});
+
+// ────────────────────────────────────────────────────────────
+// PLATFORM AUTO-DETECT + INDICATOR
+// ────────────────────────────────────────────────────────────
+const PLATFORM_LABELS = {
+  mercadolivre: '🛍️ Mercado Livre detectado',
+  amazon:       '📦 Amazon detectada',
+  shopee:       '🧡 Shopee detectada'
+};
+
+let currentPlatform = null;
+
+function updateIndicator(platform) {
+  const el = document.getElementById('platform-indicator');
+  if (platform) {
+    el.style.display = 'flex';
+    el.innerHTML = `<span class="pi-dot"></span>${PLATFORM_LABELS[platform]}`;
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+document.getElementById('link-input').addEventListener('input', function() {
+  const detected = detectPlatform(this.value);
+  currentPlatform = detected;
+  updateIndicator(detected);
+  document.getElementById('result-box').classList.remove('visible');
+  document.getElementById('error-msg').classList.remove('visible');
+});
+
+// ────────────────────────────────────────────────────────────
+// GENERATE LINK
+// ────────────────────────────────────────────────────────────
+document.getElementById('generate-btn').addEventListener('click', () => {
+  const input = document.getElementById('link-input').value.trim();
+  const errorEl = document.getElementById('error-msg');
+  const resultBox = document.getElementById('result-box');
+
+  errorEl.classList.remove('visible');
+  resultBox.classList.remove('visible');
+
+  if (!input) {
+    errorEl.textContent = '❗ Por favor, cole um link de produto primeiro.';
+    errorEl.classList.add('visible');
+    return;
+  }
+
+  try { new URL(input); } catch(_) {
+    errorEl.textContent = '❗ Link inválido. Verifique e tente novamente.';
+    errorEl.classList.add('visible');
+    return;
+  }
+
+  const platform = detectPlatform(input);
+  currentPlatform = platform;
+  updateIndicator(platform);
+
+  if (!platform) {
+    errorEl.textContent = '❗ Plataforma não reconhecida. Use links do Mercado Livre, Amazon ou Shopee.';
+    errorEl.classList.add('visible');
+    return;
+  }
+
+  const finalLink = buildAffiliateLink(input, platform);
+
+  document.getElementById('result-link').textContent = finalLink;
+  document.getElementById('open-btn').href = finalLink;
+  resultBox.classList.add('visible');
+
+  addVisitedFromUrl(input, platform, finalLink);
+});
+
+// ────────────────────────────────────────────────────────────
+// COPY BUTTON
+// ────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+document.getElementById('copy-btn').addEventListener('click', () => {
+  const link = document.getElementById('result-link').textContent;
+  navigator.clipboard.writeText(link).then(() => {
+    showToast('Link copiado! 🌸');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = link;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Link copiado! 🌸');
+  });
+});
+
+// ────────────────────────────────────────────────────────────
+// NAVBAR SCROLL
+// ────────────────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+// ────────────────────────────────────────────────────────────
+// INTERSECTION OBSERVER — fade-in
+// ────────────────────────────────────────────────────────────
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+function observeFadeIns() {
+  document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+}
+
+// ────────────────────────────────────────────────────────────
+// INIT
+// ────────────────────────────────────────────────────────────
+renderProducts();
+renderVisited();
+observeFadeIns();
+
+// Trigger hero animations on load
+setTimeout(() => {
+  document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
+}, 100);
+</script>
+</body>
+</html>
