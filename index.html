@@ -821,7 +821,7 @@
     <div class="products-header fade-in">
       <span class="section-label">✦ favoritos da curadoria</span>
       <h2 class="section-title">Produtos que eu amo 🌷</h2>
-      <p class="section-desc" style="max-width:460px; margin:0 auto;">Uma seleção carinhosa — clique no produto para abrir com o link de indicação.</p>
+      <p class="section-desc" style="max-width:460px; margin:0 auto;">Uma seleção carinhosa de materiais para crochê e artesanato — clique para abrir com o link de indicação.</p>
     </div>
 
     <div class="products-grid" id="products-grid">
@@ -851,7 +851,7 @@
 <section id="contato">
   <div class="contact-inner fade-in">
     <div class="contact-avatar-img">
-      <img src="https://instagram.fnvt11-1.fna.fbcdn.net/v/t51.82787-19/627176751_18179173732373684_7574800806677344050_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fnvt11-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2QHruDn6DrFQwVbySene5rBBxLmINDS8OsOu8lWjkKKq9TnNSkswTKjYlDT-gb7iE18&_nc_ohc=iM3fu4EJjNsQ7kNvwGLPbUQ&_nc_gid=Dx4xiypbuZ4brAgJW7vDyg&edm=APoiHPcBAAAA&ccb=7-5&oh=00_AfyDSKVTh5-cK7h_TLw-MsXJxNClnOGEIRDwgEflfs1WqA&oe=69B9DE92&_nc_sid=22de04" alt="Tecendo o Self" />
+      <img src="/logo-tecendooself.jpeg" alt="Tecendo o Self" />
     </div>
     <h2 class="contact-name">Tecendo o Self</h2>
     <p class="contact-bio">
@@ -1207,47 +1207,61 @@ function renderVisited() {
 }
 
 // ────────────────────────────────────────────────────────────
-// ML TRENDING — busca produtos populares via API pública
+// LISTA CURADA — edite aqui para adicionar/remover produtos
 // ────────────────────────────────────────────────────────────
-
-// Termos de busca rotativos para variar os cards a cada visita
-const ML_SEARCH_TERMS = [
-  'cuidados pessoais', 'autocuidado', 'skincare', 'aromaterapia',
-  'organizacao casa', 'lencol cama', 'vela aromatica', 'difusor essencia'
+const CURATED = [
+  {
+    emoji: '🧶',
+    title: 'Fio Barbante Barroco Natural Círculo 700g',
+    desc: 'Fio cru para crochê e artesanato — qualidade Círculo.',
+    price: 'Ver preço →',
+    link: 'https://shopee.com.br/product/1151968970/22498165952?mmp_pid=an_18314860902',
+    platform: 'Shopee', platformIcon: '🧡', badge: 'Favorito', slug: 'barbante-barroco-circulo'
+  },
+  {
+    emoji: '🪡',
+    title: 'Mini Máquina de Costura 12 Pontos Bivolt',
+    desc: 'Multifuncional doméstica — perfeita para projetos em casa.',
+    price: 'Ver preço →',
+    link: 'https://shopee.com.br/product/1041517511/21497495059?mmp_pid=an_18314860902',
+    platform: 'Shopee', platformIcon: '🧡', badge: 'Recomendo', slug: 'maquina-costura-12pontos'
+  },
+  {
+    emoji: '🎨',
+    title: 'Kit 8 Linhas Amigurumi Tradicional 254m',
+    desc: 'Escolha as cores — ideal para amigurumis e crochê.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BEblprn2JbP%2BxqFzd6D4eQxtDixVAuuO8qnLgCyhgZ4YwYnTm9S%2FampeM5VxPNFuRS2d9EHL8zcHaLHGCU2fle61K9n8oXTWeJgdu9X3gjoAXv4%2BEdgrTWwz9PWesqzqvlMFp4z8w6cTVxNHYMLUvI7k%2Bh1Rep0KPLlc6%2FWosb8pQWzGHia2YInoGKvcZozpzdMIbg%3D%3D',
+    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Kit', slug: 'kit-linhas-amigurumi'
+  },
+  {
+    emoji: '🐶',
+    title: 'Kit Amigurumi Snoopy e Woodstock com Receita',
+    desc: 'Coleção Peanuts — fios e receita para fazer os personagens.',
+    price: 'Ver preço →',
+    link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BG1uGFxqtLoFbvEal98Tzyh35MxN9iDKJ4qYaznRQ7nvvults%2BYLtbXAQrD1hXIL9GO5vyhkXIbZ0K1ph%2B%2BRMym%2FlKvAvt3vMl4tBtyBu8vZf3beQrrm8pLVTatZEbQFv3XMEY3Xyz8iRJz8OLtKRXnanIofSMMYPMYvdnYwcmYILoHugedEwofDY23yxsDg0MEe9WUKFYM8CF%2FqHA%3D%3D',
+    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Coleção', slug: 'kit-snoopy-woodstock'
+  },
+  {
+    emoji: '🪝',
+    title: 'Kit 8 Agulhas de Crochê Ergonômicas',
+    desc: 'Cabo emborrachado soft, 2mm a 5,5mm — conforto para criar.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B0G1CXFP8C?tag=ivonel27-20',
+    platform: 'Amazon', platformIcon: '📦', badge: 'Essencial', slug: 'agulhas-croche-ergonomicas'
+  },
+  {
+    emoji: '🐱',
+    title: 'Kit Amigurumi Hello Kitty Círculo',
+    desc: 'Fios amarelos oficiais Círculo para fazer a Hello Kitty.',
+    price: 'Ver preço →',
+    link: 'https://www.amazon.com.br/dp/B0DX8H1L94?tag=ivonel27-20',
+    platform: 'Amazon', platformIcon: '📦', badge: 'Cute', slug: 'kit-hello-kitty-circulo'
+  }
 ];
 
-function buildMLAffiliateLink(mlUrl) {
-  try {
-    const obj = new URL(mlUrl);
-    obj.searchParams.set('matt_word', AFFILIATE.mercadolivre);
-    obj.searchParams.set('matt_tool', AFFILIATE.mercadolivreToolId);
-    return obj.toString();
-  } catch(_) { return mlUrl; }
-}
-
-async function fetchMLTrending(query, limit = 6) {
-  const term = encodeURIComponent(query);
-  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${term}&sort=sold_quantity&limit=${limit}&condition=new`;
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    const data = await res.json();
-    return (data.results || []).map(item => ({
-      id: item.id,
-      title: item.title,
-      price: item.price ? 'R$ ' + item.price.toLocaleString('pt-BR', {minimumFractionDigits: 2}) : 'Ver preço',
-      thumbnail: item.thumbnail ? item.thumbnail.replace('http://', 'https://').replace('-I.jpg', '-O.jpg') : null,
-      link: buildMLAffiliateLink(item.permalink),
-      platform: 'Mercado Livre',
-      platformIcon: '🛍️',
-      badge: 'Tendência',
-      slug: 'ml-' + item.id
-    }));
-  } catch(_) { return []; }
-}
-
 // ────────────────────────────────────────────────────────────
-// RENDER CARD — usado tanto para histórico quanto trending
+// RENDER CARD
 // ────────────────────────────────────────────────────────────
 const BG_POOL = [
   'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
@@ -1258,24 +1272,26 @@ const BG_POOL = [
   'linear-gradient(135deg, #e8f0fe 0%, #f9dde2 100%)',
 ];
 
-function cardHTML(item, index, badge, isHistory = false) {
+function cardHTML(item, index, isHistory) {
   const bg = BG_POOL[index % BG_POOL.length];
-  const thumb = item.thumbnail
-    ? `<img src="${item.thumbnail}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;border-radius:0;" loading="lazy" />`
-    : `<span style="font-size:2.8rem">🛍️</span>`;
-  const badgeLabel = isHistory ? '✦ Visto por você' : badge;
+  const badge = isHistory ? '✦ Visto por você' : item.badge;
+  const badgeStyle = isHistory ? 'background:var(--taupe)' : '';
   const titleShort = item.title.length > 52 ? item.title.slice(0, 52) + '…' : item.title;
+  const thumb = item.thumbnail
+    ? `<img src="${item.thumbnail}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>`
+    : `<span style="font-size:2.8rem">${item.emoji || '🛍️'}</span>`;
   return `
     <a class="product-card fade-in" href="${item.link}" target="_blank" rel="noopener"
-       style="transition-delay: ${index * 0.07}s"
+       style="transition-delay:${index * 0.07}s"
        data-slug="${item.slug}" data-title="${item.title}" data-platform="${item.platform}" data-link="${item.link}">
       <div class="product-thumb" style="background:${bg}; overflow:hidden;">
         ${thumb}
-        <span class="product-badge" style="${isHistory ? 'background:var(--taupe)' : ''}">${badgeLabel}</span>
+        <span class="product-badge" style="${badgeStyle}">${badge}</span>
       </div>
       <div class="product-body">
         <span class="product-platform">${item.platformIcon} ${item.platform}</span>
         <h3 class="product-title">${titleShort}</h3>
+        ${item.desc ? `<p class="product-desc">${item.desc}</p>` : ''}
         <p class="product-price">${item.price}</p>
         <span class="product-cta">Ver produto
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1284,75 +1300,54 @@ function cardHTML(item, index, badge, isHistory = false) {
     </a>`;
 }
 
-function showProductsSkeleton(count = 6) {
-  const grid = document.getElementById('products-grid');
-  grid.innerHTML = Array.from({length: count}).map(() => `
-    <div class="product-card" style="pointer-events:none;">
-      <div class="product-thumb" style="background:var(--blush); animation: pulse 1.4s ease-in-out infinite;">
-        <div style="width:60%;height:24px;background:rgba(255,255,255,0.5);border-radius:8px;"></div>
-      </div>
-      <div class="product-body" style="gap:0.6rem; display:flex; flex-direction:column;">
-        <div style="height:12px;background:var(--blush);border-radius:6px;width:40%;animation:pulse 1.4s ease-in-out infinite;"></div>
-        <div style="height:16px;background:var(--blush);border-radius:6px;animation:pulse 1.4s ease-in-out infinite;"></div>
-        <div style="height:16px;background:var(--blush);border-radius:6px;width:80%;animation:pulse 1.4s ease-in-out infinite;"></div>
-        <div style="height:20px;background:var(--blush);border-radius:6px;width:50%;margin-top:0.4rem;animation:pulse 1.4s ease-in-out infinite;"></div>
-      </div>
-    </div>`).join('');
-}
-
 // ────────────────────────────────────────────────────────────
-// RENDER PRODUCTS — histórico + trending ML
+// RENDER PRODUCTS — histórico primeiro + curadoria embaralhada
 // ────────────────────────────────────────────────────────────
-async function renderProducts() {
+function renderProducts() {
   const grid = document.getElementById('products-grid');
-  showProductsSkeleton(6);
 
-  // 1. Pega histórico de cookies
+  // 1. Histórico do visitante (cookies)
   const visited = getCookieVisited();
+  const histSlugs = new Set(visited.map(v => v.slug));
   const historyItems = visited.slice(0, 3).map(v => ({
-    id: v.slug,
+    slug: v.slug,
     title: v.title,
+    desc: '',
     price: 'Ver preço →',
     thumbnail: null,
+    emoji: v.platform === 'Amazon' ? '📦' : v.platform === 'Shopee' ? '🧡' : '🛍️',
     link: v.link,
     platform: v.platform || 'Mercado Livre',
     platformIcon: v.platform === 'Amazon' ? '📦' : v.platform === 'Shopee' ? '🧡' : '🛍️',
-    badge: 'Visto por você',
-    slug: v.slug
+    badge: 'Visto por você'
   }));
 
-  // 2. Quantos trending buscar (completa até 6 cards)
-  const trendingNeeded = Math.max(3, 12 - historyItems.length);
-  const term = ML_SEARCH_TERMS[Math.floor(Math.random() * ML_SEARCH_TERMS.length)];
-  const trendingItems = await fetchMLTrending(term, trendingNeeded + 2);
+  // 2. Curadoria — exclui os que já aparecem no histórico e embaralha
+  const remaining = CURATED
+    .filter(p => !histSlugs.has(p.slug))
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 6 - historyItems.length);
 
-  // 3. Monta lista: histórico primeiro, depois trending (sem duplicatas)
-  const histSlugs = new Set(historyItems.map(h => h.slug));
-  const trendingFiltered = trendingItems.filter(t => !histSlugs.has(t.slug)).slice(0, trendingNeeded);
-  const allItems = [...historyItems, ...trendingFiltered].slice(0, 12);
+  const allItems = [...historyItems, ...remaining];
 
-  // 4. Fallback se API falhou
-  if (allItems.length === 0) {
-    grid.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;grid-column:1/-1;text-align:center;padding:2rem 0;">
-      Use a ferramenta acima para converter qualquer link em link de indicação 🌸
-    </p>`;
-    return;
+  // 3. Atualiza label da seção
+  const labelEl = document.querySelector('#produtos .section-label');
+  if (labelEl) {
+    labelEl.textContent = historyItems.length > 0
+      ? '✦ baseado em você + curadoria'
+      : '✦ favoritos da curadoria';
   }
 
-  // 5. Renderiza
-  const label = historyItems.length > 0
-    ? `✦ baseado em você + tendências`
-    : `✦ tendências do Mercado Livre`;
-  document.querySelector('.section-label').textContent = label;
-
+  // 4. Renderiza
   grid.innerHTML = allItems.map((item, i) =>
-    cardHTML(item, i, item.badge, historyItems.some(h => h.slug === item.slug))
+    cardHTML(item, i, historyItems.some(h => h.slug === item.slug))
   ).join('');
 
-  // 6. Track cliques
+  // 5. Track cliques — salva no histórico ao clicar
   grid.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
-      addVisitedFromUrl(card.dataset.link, card.dataset.platform?.toLowerCase() || 'mercadolivre', card.dataset.link);
+      const platform = card.dataset.platform || 'Mercado Livre';
+      addVisitedFromUrl(card.dataset.link, platform.toLowerCase(), card.dataset.link);
     });
   });
 
@@ -1498,7 +1493,7 @@ function observeFadeIns() {
 // ────────────────────────────────────────────────────────────
 // INIT
 // ────────────────────────────────────────────────────────────
-renderProducts(); // async — busca ML API + histórico
+renderProducts(); // histórico do visitante + curadoria embaralhada
 renderVisited();
 observeFadeIns();
 
