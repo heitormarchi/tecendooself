@@ -738,6 +738,58 @@
     }
   </style>
 </head>
+<script>
+async function encurtarLink() {
+  const input = document.querySelector("#url-input");
+  const resultBox = document.querySelector(".result-box");
+  const resultLink = document.querySelector(".result-link");
+  const errorMsg = document.querySelector(".error-msg");
+
+  const url = input.value.trim();
+
+  errorMsg.classList.remove("visible");
+  resultBox.classList.remove("visible");
+
+  if (!url) {
+    errorMsg.innerText = "Digite uma URL válida.";
+    errorMsg.classList.add("visible");
+    return;
+  }
+
+  console.log("Chamando API...");
+
+  try {
+    const response = await fetch("https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ url })
+    });
+
+    const data = await response.json();
+    console.log("Resposta API:", data);
+
+    const linkEncurtado = data.shortUrl || data.url;
+
+    resultLink.innerText = linkEncurtado;
+    resultLink.href = linkEncurtado;
+
+    resultBox.classList.add("visible");
+
+  } catch (error) {
+    console.error(error);
+    errorMsg.innerText = "Erro ao encurtar o link.";
+    errorMsg.classList.add("visible");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".btn-primary")
+    .addEventListener("click", encurtarLink);
+});
+</script>
+  
 <body>
 
 <!-- ── NAVBAR ── -->
@@ -770,7 +822,7 @@
 
   <div class="hero-tool fade-in fade-in-delay-3">
     <div class="input-row">
-      <input id="url-input" type="url" placeholder="Cole aqui o link do produto…" autocomplete="off" />
+      <input id="url-input" type="text" placeholder="Cole aqui o link do produto…" autocomplete="off" />
       <button class="btn-paste" id="paste-btn" title="Colar da área de transferência">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
         Colar
