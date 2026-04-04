@@ -739,54 +739,131 @@
   </style>
 </head>
 <script>
-async function encurtarLink() {
-  const input = document.querySelector("#url-input");
-  const resultBox = document.querySelector(".result-box");
-  const resultLink = document.querySelector(".result-link");
-  const errorMsg = document.querySelector(".error-msg");
-
-  const url = input.value.trim();
-
-  errorMsg.classList.remove("visible");
-  resultBox.classList.remove("visible");
-
-  if (!url) {
-    errorMsg.innerText = "Digite uma URL válida.";
-    errorMsg.classList.add("visible");
-    return;
-  }
-
-  console.log("Chamando API...");
-
-  try {
-    const response = await fetch("https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ url })
-    });
-
-    const data = await response.json();
-    console.log("Resposta API:", data);
-
-    const linkEncurtado = data.shortUrl || data.url;
-
-    resultLink.innerText = linkEncurtado;
-    resultLink.href = linkEncurtado;
-
-    resultBox.classList.add("visible");
-
-  } catch (error) {
-    console.error(error);
-    errorMsg.innerText = "Erro ao encurtar o link.";
-    errorMsg.classList.add("visible");
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".btn-primary")
-    .addEventListener("click", encurtarLink);
+
+  const input = document.querySelector("#url-input");
+  const generateBtn = document.querySelector("#generate-btn");
+  const pasteBtn = document.querySelector("#paste-btn");
+
+  const resultBox = document.querySelector("#result-box");
+  const resultLink = document.querySelector("#result-link");
+  const openBtn = document.querySelector("#open-btn");
+  const copyBtn = document.querySelector("#copy-btn");
+
+  const errorMsg = document.querySelector("#error-msg");
+  const platformIndicator = document.querySelector("#platform-indicator");
+
+  // =========================
+  // Detectar plataforma
+  // =========================
+  function detectarPlataforma(url) {
+    if (url.includes("amazon")) return "Amazon";
+    if (url.includes("mercadolivre") || url.includes("mercadolibre")) return "Mercado Livre";
+    if (url.includes("shopee")) return "Shopee";
+    return null;
+  }
+
+  function atualizarIndicador(url) {
+    const plataforma = detectarPlataforma(url);
+
+    if (plataforma) {
+      platformIndicator.style.display = "block";
+      platformIndicator.innerText = `✔ ${plataforma} detectado`;
+    } else {
+      platformIndicator.style.display = "none";
+    }
+  }
+
+  input.addEventListener("input", () => {
+    atualizarIndicador(input.value);
+  });
+
+  // =========================
+  // Colar da área de transferência
+  // =========================
+  pasteBtn.addEventListener("click", async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      input.value = text;
+      atualizarIndicador(text);
+    } catch (err) {
+      console.error("Erro ao colar:", err);
+    }
+  });
+
+  // =========================
+  // Copiar link gerado
+  // =========================
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(resultLink.innerText);
+      copyBtn.innerText = "Copiado!";
+      setTimeout(() => copyBtn.innerText = "Copiar link", 2000);
+    } catch (err) {
+      console.error("Erro ao copiar:", err);
+    }
+  });
+
+  // =========================
+  // Gerar link (API)
+  // =========================
+  async function encurtarLink() {
+    const url = input.value.trim();
+
+    errorMsg.innerText = "";
+    resultBox.style.display = "none";
+
+    if (!url) {
+      errorMsg.innerText = "Digite uma URL válida.";
+      return;
+    }
+
+    generateBtn.disabled = true;
+    generateBtn.innerText = "Gerando...";
+
+    console.log("Chamando API...");
+
+    try {
+      const response = await fetch("https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ url })
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro na requisição");
+      }
+
+      const data = await response.json();
+      console.log("Resposta API:", data);
+
+      const link = data.shortUrl || data.url;
+
+      if (!link) {
+        throw new Error("Resposta sem link");
+      }
+
+      resultLink.innerText = link;
+      openBtn.href = link;
+
+      resultBox.style.display = "block";
+
+    } catch (error) {
+      console.error(error);
+      errorMsg.innerText = "Erro ao gerar o link.";
+    } finally {
+      generateBtn.disabled = false;
+      generateBtn.innerText = "Gerar link de indicação ✨";
+    }
+  }
+
+  // =========================
+  // Evento principal
+  // =========================
+  generateBtn.addEventListener("click", encurtarLink);
+
 });
 </script>
   
