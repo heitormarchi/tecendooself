@@ -933,7 +933,11 @@ async function encurtarLink() {
 }
 
 // botão
-document.querySelector(".btn-primary").addEventListener("click", encurtarLink);
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".btn-primary")
+    .addEventListener("click", encurtarLink);
+});
+
 
 // ────────────────────────────────────────────────────────────
 // CONFIG: Affiliate IDs — edit these when ready
