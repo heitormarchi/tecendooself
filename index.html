@@ -22,9 +22,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
@@ -33,701 +31,180 @@
       overflow-x: hidden;
     }
 
-    /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--linen); }
     ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; }
 
-    /* ── NAVBAR ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 2rem; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
       background: rgba(253, 246, 240, 0.72);
       backdrop-filter: blur(18px) saturate(1.4);
       -webkit-backdrop-filter: blur(18px) saturate(1.4);
       border-bottom: 1px solid rgba(242, 184, 192, 0.3);
       transition: background 0.35s ease, box-shadow 0.35s ease;
     }
-    nav.scrolled {
-      background: rgba(253, 246, 240, 0.92);
-      box-shadow: 0 2px 24px var(--shadow);
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--brown);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-    }
+    nav.scrolled { background: rgba(253, 246, 240, 0.92); box-shadow: 0 2px 24px var(--shadow); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--brown); text-decoration: none; letter-spacing: 0.02em; }
     .nav-logo .italic { font-style: italic; }
     .nav-logo .regular { font-style: normal; color: var(--taupe); }
     .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.25s;
-      position: relative;
+      font-size: 0.85rem; font-weight: 500; color: var(--muted); text-decoration: none;
+      letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.25s; position: relative;
     }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px; left: 0;
-      width: 0; height: 1px;
-      background: var(--rose);
-      transition: width 0.3s ease;
-    }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--rose); transition: width 0.3s ease; }
     .nav-links a:hover { color: var(--brown); }
     .nav-links a:hover::after { width: 100%; }
-    .nav-instagram {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      color: var(--taupe);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.25s;
-    }
+    .nav-instagram { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--taupe); text-decoration: none; font-weight: 500; transition: color 0.25s; }
     .nav-instagram:hover { color: var(--brown); }
     .nav-instagram svg { width: 16px; height: 16px; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
 
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-    }
-
-    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      padding: 100px 2rem 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; padding: 100px 2rem 60px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
       background:
         radial-gradient(ellipse 70% 60% at 10% 90%, rgba(242,184,192,0.28) 0%, transparent 60%),
         radial-gradient(ellipse 50% 40% at 90% 10%, rgba(249,221,226,0.35) 0%, transparent 55%),
         var(--cream);
     }
+    .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50% 50% 50% 50% / 40% 60% 40% 60%; opacity: 0.18; pointer-events: none; }
+    .hero::before { width: 320px; height: 320px; background: var(--rose); top: -60px; right: -80px; transform: rotate(20deg); }
+    .hero::after { width: 200px; height: 200px; background: var(--taupe); bottom: 40px; left: -60px; transform: rotate(-15deg); }
 
-    /* Decorative petals */
-    .hero::before, .hero::after {
-      content: '';
-      position: absolute;
-      border-radius: 50% 50% 50% 50% / 40% 60% 40% 60%;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-    .hero::before {
-      width: 320px; height: 320px;
-      background: var(--rose);
-      top: -60px; right: -80px;
-      transform: rotate(20deg);
-    }
-    .hero::after {
-      width: 200px; height: 200px;
-      background: var(--taupe);
-      bottom: 40px; left: -60px;
-      transform: rotate(-15deg);
-    }
-
-    .hero-eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--taupe);
-      font-weight: 500;
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.15;
-      max-width: 700px;
-      margin-bottom: 1.4rem;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--brown);
-      font-weight: 400;
-    }
-    .hero-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 480px;
-      margin-bottom: 2.8rem;
-      font-weight: 300;
-    }
-    .scroll-hint {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1rem;
-      color: var(--taupe);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      opacity: 0.7;
-      animation: bounce 2.5s ease-in-out infinite;
-    }
+    .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--taupe); font-weight: 500; margin-bottom: 1.2rem; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 600; color: var(--text); line-height: 1.15; max-width: 700px; margin-bottom: 1.4rem; }
+    .hero h1 em { font-style: italic; color: var(--brown); font-weight: 400; }
+    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 2.8rem; font-weight: 300; }
+    .scroll-hint { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin-top: 1rem; color: var(--taupe); font-size: 0.75rem; letter-spacing: 0.1em; opacity: 0.7; animation: bounce 2.5s ease-in-out infinite; }
     .scroll-hint svg { width: 18px; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-    }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    /* ── SECTION LABELS ── */
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--taupe);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      color: var(--text);
-      margin-bottom: 0.6rem;
-      line-height: 1.2;
-    }
-    .section-desc {
-      color: var(--muted);
-      font-size: 0.97rem;
-      margin-bottom: 2.4rem;
-      font-weight: 300;
-    }
+    .section-label { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); font-weight: 500; display: block; margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
+    .section-desc { color: var(--muted); font-size: 0.97rem; margin-bottom: 2.4rem; font-weight: 300; }
 
-    /* ── HERO TOOL (inline on hero) ── */
     .hero-tool {
-      width: 100%;
-      max-width: 560px;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 20px;
-      padding: 1.8rem 2rem;
-      box-shadow: 0 8px 40px var(--shadow2);
-      border: 1px solid rgba(242, 184, 192, 0.35);
+      width: 100%; max-width: 560px;
+      background: rgba(255,255,255,0.78); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px; padding: 1.8rem 2rem;
+      box-shadow: 0 8px 40px var(--shadow2); border: 1px solid rgba(242, 184, 192, 0.35);
     }
 
-    .input-row {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 0.8rem;
-    }
+    .input-row { display: flex; gap: 0.5rem; margin-bottom: 0.8rem; }
     .input-row input {
-      flex: 1;
-      padding: 0.85rem 1.1rem;
-      border: 1.5px solid var(--blush);
-      border-radius: 12px;
-      font-size: 0.93rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--cream);
-      outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s;
-      min-width: 0;
+      flex: 1; padding: 0.85rem 1.1rem; border: 1.5px solid var(--blush); border-radius: 12px;
+      font-size: 0.93rem; font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--cream);
+      outline: none; transition: border-color 0.25s, box-shadow 0.25s; min-width: 0;
     }
-    .input-row input:focus {
-      border-color: var(--rose);
-      box-shadow: 0 0 0 3px rgba(242, 184, 192, 0.2);
-      background: var(--white);
-    }
+    .input-row input:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(242, 184, 192, 0.2); background: var(--white); }
     .input-row input::placeholder { color: var(--taupe); opacity: 0.75; }
 
     .btn-paste {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.85rem 1.1rem;
-      background: var(--blush);
-      color: var(--brown);
-      border: 1.5px solid rgba(242,184,192,0.5);
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.22s;
+      display: flex; align-items: center; gap: 0.4rem; padding: 0.85rem 1.1rem;
+      background: var(--blush); color: var(--brown); border: 1.5px solid rgba(242,184,192,0.5);
+      border-radius: 12px; font-size: 0.85rem; font-weight: 500; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; white-space: nowrap; transition: all 0.22s;
     }
     .btn-paste:hover { background: var(--rose); color: var(--white); border-color: var(--rose); }
 
     .platform-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.78rem;
-      color: var(--brown);
-      background: rgba(242,184,192,0.18);
-      border: 1px solid rgba(242,184,192,0.4);
-      border-radius: 100px;
-      padding: 0.3rem 0.9rem;
-      margin-bottom: 0.8rem;
-      width: fit-content;
-      font-weight: 500;
-      animation: fadeSlideUp 0.3s ease;
+      display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--brown);
+      background: rgba(242,184,192,0.18); border: 1px solid rgba(242,184,192,0.4);
+      border-radius: 100px; padding: 0.3rem 0.9rem; margin-bottom: 0.8rem;
+      width: fit-content; font-weight: 500; animation: fadeSlideUp 0.3s ease;
     }
-    .platform-indicator .pi-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--brown);
-    }
+    .platform-indicator .pi-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brown); }
 
-    /* ── CONTACT AVATAR IMAGE ── */
-    .contact-avatar-img {
-      width: 88px; height: 88px;
-      border-radius: 50%;
-      margin: 0 auto 1.6rem;
-      overflow: hidden;
-      border: 3px solid var(--rose);
-      box-shadow: 0 4px 24px rgba(242,184,192,0.45);
-    }
-    .contact-avatar-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    /* ── TOOL CARD (kept for layout pieces reused) ── */
-    .tool-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 2.4rem;
-      box-shadow: 0 4px 32px var(--shadow);
-      border: 1px solid rgba(242, 184, 192, 0.25);
-    }
-
-    .platform-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.6rem;
-      flex-wrap: wrap;
-    }
-    .platform-tab {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
-      border: 1.5px solid var(--blush);
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      transition: all 0.25s ease;
-    }
-    .platform-tab:hover { border-color: var(--rose); color: var(--brown); }
-    .platform-tab.active {
-      background: var(--rose);
-      border-color: var(--rose);
-      color: var(--white);
-      box-shadow: 0 4px 16px rgba(242,184,192,0.4);
-    }
-    .platform-tab .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      opacity: 0.6;
-    }
-
-    .input-group {
-      position: relative;
-      margin-bottom: 1rem;
-    }
-    .input-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.03em;
-    }
-    .input-group input {
-      width: 100%;
-      padding: 0.9rem 1.2rem;
-      border: 1.5px solid var(--blush);
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-      background: var(--cream);
-      outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s;
-    }
-    .input-group input:focus {
-      border-color: var(--rose);
-      box-shadow: 0 0 0 3px rgba(242, 184, 192, 0.2);
-      background: var(--white);
-    }
-    .input-group input::placeholder { color: var(--taupe); opacity: 0.7; }
+    .contact-avatar-img { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 1.6rem; overflow: hidden; border: 3px solid var(--rose); box-shadow: 0 4px 24px rgba(242,184,192,0.45); }
+    .contact-avatar-img img { width: 100%; height: 100%; object-fit: cover; }
 
     .btn-primary {
-      width: 100%;
-      padding: 1rem;
+      width: 100%; padding: 1rem;
       background: linear-gradient(135deg, var(--brown) 0%, #c47a6a 100%);
-      color: var(--white);
-      border: none;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-      letter-spacing: 0.03em;
-      margin-top: 0.6rem;
+      color: var(--white); border: none; border-radius: 12px;
+      font-size: 0.95rem; font-weight: 500; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      letter-spacing: 0.03em; margin-top: 0.6rem;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(139, 99, 87, 0.3);
-    }
-    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139, 99, 87, 0.3); }
+    .btn-primary:active:not(:disabled) { transform: translateY(0); }
+    .btn-primary:disabled { opacity: 0.72; cursor: not-allowed; }
 
-    .result-box {
-      margin-top: 1.4rem;
-      padding: 1.2rem;
-      background: var(--linen);
-      border-radius: 12px;
-      border: 1.5px solid rgba(242, 184, 192, 0.4);
-      display: none;
-      animation: fadeSlideUp 0.35s ease;
-    }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .result-box { margin-top: 1.4rem; padding: 1.2rem; background: var(--linen); border-radius: 12px; border: 1.5px solid rgba(242, 184, 192, 0.4); display: none; animation: fadeSlideUp 0.35s ease; }
     .result-box.visible { display: block; }
-    .result-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 0.6rem;
-      display: block;
-    }
-    .result-link {
-      font-size: 0.88rem;
-      color: var(--brown);
-      word-break: break-all;
-      display: block;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
+    .result-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.6rem; display: block; }
+    .result-link { font-size: 0.88rem; color: var(--brown); word-break: break-all; display: block; margin-bottom: 1rem; font-weight: 500; }
     .result-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    .btn-copy, .btn-open {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.5rem 1.1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: all 0.22s;
-    }
-    .btn-copy {
-      background: var(--rose);
-      color: var(--white);
-      border: none;
-      box-shadow: 0 2px 12px rgba(242,184,192,0.35);
-    }
+    .btn-copy, .btn-open { display: flex; align-items: center; gap: 0.35rem; padding: 0.5rem 1.1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.22s; }
+    .btn-copy { background: var(--rose); color: var(--white); border: none; box-shadow: 0 2px 12px rgba(242,184,192,0.35); }
     .btn-copy:hover { background: var(--brown); box-shadow: 0 4px 18px rgba(139,99,87,0.2); }
-    .btn-open {
-      background: transparent;
-      color: var(--brown);
-      border: 1.5px solid var(--rose);
-    }
+    .btn-open { background: transparent; color: var(--brown); border: 1.5px solid var(--rose); }
     .btn-open:hover { background: var(--blush); }
     .btn-copy svg, .btn-open svg { width: 13px; height: 13px; }
 
-    .error-msg {
-      color: #c0544a;
-      font-size: 0.82rem;
-      margin-top: 0.6rem;
-      padding: 0.5rem 0.8rem;
-      background: rgba(192, 84, 74, 0.07);
-      border-radius: 8px;
-      display: none;
-    }
+    .error-msg { color: #c0544a; font-size: 0.82rem; margin-top: 0.6rem; padding: 0.5rem 0.8rem; background: rgba(192, 84, 74, 0.07); border-radius: 8px; display: none; }
     .error-msg.visible { display: block; }
 
-    .platform-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 1.2rem;
-      line-height: 1.6;
-      text-align: center;
-    }
+    .platform-note { font-size: 0.78rem; color: var(--muted); margin-top: 1.2rem; line-height: 1.6; text-align: center; }
 
-    /* ── PRODUCTS ── */
-    #produtos {
-      padding: 80px 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .products-header {
-      text-align: center;
-      margin-bottom: 3.2rem;
-    }
+    #produtos { padding: 80px 2rem; max-width: 1100px; margin: 0 auto; }
+    .products-header { text-align: center; margin-bottom: 3.2rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.6rem; }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.6rem;
-    }
-
-    .product-card {
-      background: var(--white);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(242, 184, 192, 0.2);
-      box-shadow: 0 2px 16px var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 48px var(--shadow2);
-      border-color: rgba(242, 184, 192, 0.6);
-    }
-
-    .product-thumb {
-      width: 100%;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .product-emoji {
-      font-size: 3.5rem;
-      z-index: 1;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
-    }
-    .product-badge {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: var(--rose);
-      color: var(--white);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 100px;
-    }
-
+    .product-card { background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid rgba(242, 184, 192, 0.2); box-shadow: 0 2px 16px var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; cursor: pointer; }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px var(--shadow2); border-color: rgba(242, 184, 192, 0.6); }
+    .product-thumb { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .product-emoji { font-size: 3.5rem; z-index: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08)); }
+    .product-badge { position: absolute; top: 12px; right: 12px; background: var(--rose); color: var(--white); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
     .product-body { padding: 1.2rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
-    .product-platform {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .product-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      line-height: 1.3;
-    }
-    .product-desc {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      font-weight: 300;
-      flex: 1;
-    }
-    .product-price {
-      font-size: 1.05rem;
-      color: var(--brown);
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-    .product-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--brown);
-      text-decoration: none;
-      border: 1.5px solid var(--rose);
-      padding: 0.45rem 1rem;
-      border-radius: 100px;
-      transition: all 0.25s;
-      align-self: flex-start;
-    }
+    .product-platform { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
+    .product-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; }
+    .product-desc { font-size: 0.82rem; color: var(--muted); margin-bottom: 1rem; font-weight: 300; flex: 1; }
+    .product-price { font-size: 1.05rem; color: var(--brown); font-weight: 600; margin-bottom: 0.8rem; }
+    .product-cta { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--brown); text-decoration: none; border: 1.5px solid var(--rose); padding: 0.45rem 1rem; border-radius: 100px; transition: all 0.25s; align-self: flex-start; }
     .product-cta:hover { background: var(--rose); color: var(--white); }
 
-    /* Recently viewed */
     #visitados { padding: 20px 2rem 80px; max-width: 1100px; margin: 0 auto; }
     #visitados-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-    .visited-card {
-      background: var(--white);
-      border-radius: 14px;
-      padding: 1rem 1.2rem;
-      border: 1px solid rgba(242, 184, 192, 0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      font-size: 0.82rem;
-    }
+    .visited-card { background: var(--white); border-radius: 14px; padding: 1rem 1.2rem; border: 1px solid rgba(242, 184, 192, 0.2); display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.82rem; }
     .visited-title { font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .visited-platform { font-size: 0.72rem; color: var(--taupe); }
     .visited-link { color: var(--brown); font-size: 0.75rem; text-decoration: none; }
     .visited-link:hover { text-decoration: underline; }
 
-    /* ── DIVIDER ── */
-    .wavy-divider {
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-    }
+    .wavy-divider { width: 100%; overflow: hidden; line-height: 0; }
     .wavy-divider svg { display: block; width: 100%; }
 
-    /* ── CONTACT ── */
-    #contato {
-      background: var(--linen);
-      padding: 80px 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #contato::before {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 70%);
-      top: -200px; right: -150px;
-      pointer-events: none;
-    }
+    #contato { background: var(--linen); padding: 80px 2rem; text-align: center; position: relative; overflow: hidden; }
+    #contato::before { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(242,184,192,0.2) 0%, transparent 70%); top: -200px; right: -150px; pointer-events: none; }
     .contact-inner { max-width: 540px; margin: 0 auto; position: relative; }
-    .contact-avatar {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 1.6rem;
-      background: linear-gradient(135deg, var(--rose) 0%, var(--taupe) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 4px 24px rgba(242,184,192,0.4);
-    }
-    .contact-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .contact-bio {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 2rem;
-      font-weight: 300;
-      line-height: 1.7;
-    }
-    .contact-insta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%);
-      color: var(--white);
-      border-radius: 100px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(225, 48, 108, 0.25);
-    }
-    .contact-insta-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(225, 48, 108, 0.35);
-    }
+    .contact-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text); margin-bottom: 0.5rem; }
+    .contact-bio { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; font-weight: 300; line-height: 1.7; }
+    .contact-insta-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 2rem; background: linear-gradient(135deg, #e1306c 0%, #c13584 50%, #833ab4 100%); color: var(--white); border-radius: 100px; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(225, 48, 108, 0.25); }
+    .contact-insta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(225, 48, 108, 0.35); }
     .contact-insta-btn svg { width: 20px; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--white);
-      padding: 1.6rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--blush);
-      font-size: 0.78rem;
-      color: var(--taupe);
-    }
+    footer { background: var(--white); padding: 1.6rem 2rem; text-align: center; border-top: 1px solid var(--blush); font-size: 0.78rem; color: var(--taupe); }
     footer a { color: var(--brown); text-decoration: none; }
 
-    /* ── ANIMATIONS ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .fade-in-delay-1 { transition-delay: 0.1s; }
     .fade-in-delay-2 { transition-delay: 0.2s; }
     .fade-in-delay-3 { transition-delay: 0.3s; }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── TOAST ── */
-    .toast {
-      position: fixed;
-      bottom: 28px; left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--brown);
-      color: var(--white);
-      padding: 0.7rem 1.6rem;
-      border-radius: 100px;
-      font-size: 0.87rem;
-      font-weight: 500;
-      pointer-events: none;
-      transition: transform 0.35s ease, opacity 0.35s ease;
-      opacity: 0;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      box-shadow: 0 4px 24px rgba(139,99,87,0.3);
-    }
+    .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--brown); color: var(--white); padding: 0.7rem 1.6rem; border-radius: 100px; font-size: 0.87rem; font-weight: 500; pointer-events: none; transition: transform 0.35s ease, opacity 0.35s ease; opacity: 0; z-index: 999; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; box-shadow: 0 4px 24px rgba(139,99,87,0.3); }
     .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       .hero-tool { padding: 1.4rem 1.1rem; }
       .input-row { flex-direction: column; }
@@ -738,138 +215,8 @@
     }
   </style>
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const input = document.querySelector("#url-input");
-  const generateBtn = document.querySelector("#generate-btn");
-  const pasteBtn = document.querySelector("#paste-btn");
-
-  const resultBox = document.querySelector("#result-box");
-  const resultLink = document.querySelector("#result-link");
-  const openBtn = document.querySelector("#open-btn");
-  const copyBtn = document.querySelector("#copy-btn");
-
-  const errorMsg = document.querySelector("#error-msg");
-  const platformIndicator = document.querySelector("#platform-indicator");
-
-  // =========================
-  // Detectar plataforma
-  // =========================
-  function detectarPlataforma(url) {
-    if (url.includes("amazon")) return "Amazon";
-    if (url.includes("mercadolivre") || url.includes("mercadolibre")) return "Mercado Livre";
-    if (url.includes("shopee")) return "Shopee";
-    return null;
-  }
-
-  function atualizarIndicador(url) {
-    const plataforma = detectarPlataforma(url);
-
-    if (plataforma) {
-      platformIndicator.style.display = "block";
-      platformIndicator.innerText = `✔ ${plataforma} detectado`;
-    } else {
-      platformIndicator.style.display = "none";
-    }
-  }
-
-  input.addEventListener("input", () => {
-    atualizarIndicador(input.value);
-  });
-
-  // =========================
-  // Colar da área de transferência
-  // =========================
-  pasteBtn.addEventListener("click", async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      input.value = text;
-      atualizarIndicador(text);
-    } catch (err) {
-      console.error("Erro ao colar:", err);
-    }
-  });
-
-  // =========================
-  // Copiar link gerado
-  // =========================
-  copyBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(resultLink.innerText);
-      copyBtn.innerText = "Copiado!";
-      setTimeout(() => copyBtn.innerText = "Copiar link", 2000);
-    } catch (err) {
-      console.error("Erro ao copiar:", err);
-    }
-  });
-
-  // =========================
-  // Gerar link (API)
-  // =========================
-  async function encurtarLink() {
-    const url = input.value.trim();
-
-    errorMsg.innerText = "";
-    resultBox.style.display = "none";
-
-    if (!url) {
-      errorMsg.innerText = "Digite uma URL válida.";
-      return;
-    }
-
-    generateBtn.disabled = true;
-    generateBtn.innerText = "Gerando...";
-
-    console.log("Chamando API...");
-
-    try {
-      const response = await fetch("https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ url })
-      });
-
-      if (!response.ok) {
-        throw new Error("Erro na requisição");
-      }
-
-      const data = await response.json();
-      console.log("Resposta API:", data);
-
-      const link = data.shortUrl || data.url;
-
-      if (!link) {
-        throw new Error("Resposta sem link");
-      }
-
-      resultLink.innerText = link;
-      openBtn.href = link;
-
-      resultBox.style.display = "block";
-
-    } catch (error) {
-      console.error(error);
-      errorMsg.innerText = "Erro ao gerar o link.";
-    } finally {
-      generateBtn.disabled = false;
-      generateBtn.innerText = "Gerar link de indicação ✨";
-    }
-  }
-
-  // =========================
-  // Evento principal
-  // =========================
-  generateBtn.addEventListener("click", encurtarLink);
-
-});
-</script>
-  
 <body>
 
-<!-- ── NAVBAR ── -->
 <nav id="navbar">
   <a href="#" class="nav-logo"><span class="italic">tecendo</span> <span class="regular">o</span> <span class="italic">self</span></a>
   <ul class="nav-links">
@@ -887,19 +234,18 @@ document.addEventListener("DOMContentLoaded", () => {
   </a>
 </nav>
 
-<!-- ── HERO (with tool inline) ── -->
 <section class="hero" id="inicio">
   <p class="hero-eyebrow fade-in">✦ links de afiliada com carinho</p>
   <h1 class="fade-in fade-in-delay-1">
     Encontre o que você ama<br/><em>e apoie quem cuida de você</em>
   </h1>
   <p class="hero-sub fade-in fade-in-delay-2">
-    Cole o link de qualquer produto do Mercado Livre, Amazon ou Shopee e receba o link com o código de indicação — sem custo extra pra você.
+    Cole o link de qualquer produto do Mercado Livre, Amazon ou Shopee e receba o link encurtado com o código de indicação — sem custo extra pra você.
   </p>
 
-  <div class="hero-tool fade-in fade-in-delay-3">
+  <div class="hero-tool fade-in fade-in-delay-3" id="ferramenta">
     <div class="input-row">
-      <input id="url-input" type="text" placeholder="Cole aqui o link do produto…" autocomplete="off" />
+      <input id="link-input" type="url" placeholder="Cole aqui o link do produto…" autocomplete="off" />
       <button class="btn-paste" id="paste-btn" title="Colar da área de transferência">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
         Colar
@@ -910,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <p class="error-msg" id="error-msg"></p>
 
     <div class="result-box" id="result-box">
-      <span class="result-label">✦ seu link com indicação</span>
+      <span class="result-label">✦ seu link encurtado com indicação</span>
       <span class="result-link" id="result-link"></span>
       <div class="result-actions">
         <button class="btn-copy" id="copy-btn">
@@ -937,29 +283,23 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<!-- ── WAVY ── -->
 <div class="wavy-divider">
   <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,24 C240,60 480,-12 720,24 C960,60 1200,-12 1440,24 L1440,48 L0,48 Z" fill="#f5ede4"/>
   </svg>
 </div>
 
-<!-- ── PRODUCTS ── -->
 <section id="produtos" style="background:var(--linen); padding-bottom:80px;">
   <div style="max-width:1100px; margin:0 auto; padding:80px 2rem 40px;">
     <div class="products-header fade-in">
-      <span class="section-label">✦ favoritos da curadoria</span>
+      <span class="section-label" id="products-label">✦ favoritos da curadoria</span>
       <h2 class="section-title">Produtos que eu amo 🌷</h2>
       <p class="section-desc" style="max-width:460px; margin:0 auto;">Uma seleção carinhosa de materiais para crochê e artesanato — clique para abrir com o link de indicação.</p>
     </div>
-
-    <div class="products-grid" id="products-grid">
-      <!-- Cards generated by JS below -->
-    </div>
+    <div class="products-grid" id="products-grid"></div>
   </div>
 </section>
 
-<!-- ── RECENTLY VIEWED ── -->
 <section id="visitados" style="display:none;">
   <div class="fade-in">
     <span class="section-label">✦ você viu recentemente</span>
@@ -969,14 +309,12 @@ document.addEventListener("DOMContentLoaded", () => {
   <div id="visitados-grid" class="fade-in fade-in-delay-1"></div>
 </section>
 
-<!-- ── DIVIDER 2 ── -->
 <div class="wavy-divider" style="transform: scaleY(-1) scaleX(-1);">
   <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,24 C240,60 480,-12 720,24 C960,60 1200,-12 1440,24 L1440,48 L0,48 Z" fill="#f5ede4"/>
   </svg>
 </div>
 
-<!-- ── CONTACT ── -->
 <section id="contato">
   <div class="contact-inner fade-in">
     <div class="contact-avatar-img">
@@ -998,12 +336,10 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
 <footer>
   <p>© 2026 Tecendo o Self · Feito com muito amor 🌸 · <a href="https://instagram.com/tecendooself" target="_blank">@tecendooself</a></p>
 </footer>
 
-<!-- ── TOAST ── -->
 <div class="toast" id="toast">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
   <span id="toast-msg">Link copiado!</span>
@@ -1011,309 +347,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
 // ────────────────────────────────────────────────────────────
-// Pegar o link pela API
+// CONFIG — webhook n8n (resolve afiliado + encurta via Shlink)
 // ────────────────────────────────────────────────────────────
-async function encurtarLink() {
-  const input = document.querySelector("#url-input");
-  const resultBox = document.querySelector(".result-box");
-  const resultLink = document.querySelector(".result-link");
-  const errorMsg = document.querySelector(".error-msg");
-
-  const url = input.value.trim();
-
-  // Reset UI
-  errorMsg.classList.remove("visible");
-  resultBox.classList.remove("visible");
-
-  if (!url) {
-    errorMsg.innerText = "Digite uma URL válida.";
-    errorMsg.classList.add("visible");
-    return;
-  }
-
-  try {
-    const response = await fetch("https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ url })
-    });
-
-    if (!response.ok) {
-      throw new Error("Erro na requisição");
-    }
-
-    const data = await response.json();
-
-    // 👉 ajuste aqui conforme o retorno da sua API
-    const linkEncurtado = data.url || data.shortUrl || JSON.stringify(data);
-
-    resultLink.innerText = linkEncurtado;
-    resultLink.href = linkEncurtado;
-
-    resultBox.classList.add("visible");
-
-  } catch (error) {
-    errorMsg.innerText = "Erro ao encurtar o link.";
-    errorMsg.classList.add("visible");
-    console.error(error);
-  }
-}
-
-// botão
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".btn-primary")
-    .addEventListener("click", encurtarLink);
-});
-
+const WEBHOOK_URL = 'https://n8n-n8n.mnevvo.easypanel.host/webhook/encurtar-link';
 
 // ────────────────────────────────────────────────────────────
-// CONFIG: Affiliate IDs — edit these when ready
+// CURADORIA DE PRODUTOS
 // ────────────────────────────────────────────────────────────
-const AFFILIATE = {
-  mercadolivre: 'ivonel27',        // matt_word / usuário afiliado ML
-  mercadolivreToolId: '50399659',  // matt_tool ML
-  amazon:       'ivonel27-20',     // Amazon tag
-  shopee:       'an_18314860902'   // mmp_pid Shopee
-};
-
-// ────────────────────────────────────────────────────────────
-// CURATED PRODUCTS — update links with real affiliate URLs
-// ────────────────────────────────────────────────────────────
-const PRODUCTS = [
+const CURATED = [
   {
-    emoji: '☀️',
-    bg: 'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
-    badge: 'Favorito',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Protetor Solar Episol FPS 70',
-    desc: 'Mantecorp, tom 3 médio. Proteção facial de verdade para o dia a dia.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/mantecorp-protetor-solar-facial-episol-fps-70-tom-3-medio/p/MLB19685236?matt_event_ts=1773411931353&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=2a0fac8a-ecb5-4341-926b-76abfb834760',
-    slug: 'protetor-episol-fps70'
+    emoji: '🧶', title: 'Fio Barbante Barroco Natural Círculo 700g',
+    desc: 'Fio cru para crochê e artesanato — qualidade Círculo.',
+    price: 'Ver preço →', link: 'https://shopee.com.br/product/1151968970/22498165952?mmp_pid=an_18314860902',
+    platform: 'Shopee', platformIcon: '🧡', badge: 'Favorito', slug: 'barbante-barroco-circulo'
   },
   {
-    emoji: '☕',
-    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8d8 100%)',
-    badge: 'Recomendo',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Cafeteira Elétrica 15 Xícaras Elgin',
-    desc: 'Coffee Break preta — para começar o dia com carinho.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/cafeteira-eletrica-15-xicaras-elgin-coffee-break-preta/p/MLB40210437?matt_event_ts=1773411938082&matt_d2id=f94167ba-d67a-43bf-8c13-faa23ac1a8e2&matt_tracing_id=bbe14529-a340-45d7-9a49-83484c393bb2',
-    slug: 'cafeteira-elgin'
+    emoji: '🪡', title: 'Mini Máquina de Costura 12 Pontos Bivolt',
+    desc: 'Multifuncional doméstica — perfeita para projetos em casa.',
+    price: 'Ver preço →', link: 'https://shopee.com.br/product/1041517511/21497495059?mmp_pid=an_18314860902',
+    platform: 'Shopee', platformIcon: '🧡', badge: 'Recomendo', slug: 'maquina-costura-12pontos'
   },
   {
-    emoji: '🛋️',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #f5ede4 100%)',
-    badge: 'Casa',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Manta para Sofá 220x150',
-    desc: 'Decoração e proteção — envio imediato. Aconchego garantido.',
-    price: 'Ver preço →',
-    link: 'https://produto.mercadolivre.com.br/MLB-2060269293-manta-para-sofa-decoraco-proteco-220x150-envio-imediato-_JM?searchVariation=173913458764&matt_event_ts=1773411940980&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=d0d98900-4193-4194-af6e-dfb112319b97',
-    slug: 'manta-sofa'
+    emoji: '🎨', title: 'Kit 8 Linhas Amigurumi Tradicional 254m',
+    desc: 'Escolha as cores — ideal para amigurumis e crochê.',
+    price: 'Ver preço →', link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BEblprn2JbP%2BxqFzd6D4eQxtDixVAuuO8qnLgCyhgZ4YwYnTm9S%2FampeM5VxPNFuRS2d9EHL8zcHaLHGCU2fle61K9n8oXTWeJgdu9X3gjoAXv4%2BEdgrTWwz9PWesqzqvlMFp4z8w6cTVxNHYMLUvI7k%2Bh1Rep0KPLlc6%2FWosb8pQWzGHia2YInoGKvcZozpzdMIbg%3D%3D',
+    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Kit', slug: 'kit-linhas-amigurumi'
   },
   {
-    emoji: '🕶️',
-    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f9dde2 100%)',
-    badge: 'Estilo',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Óculos Ray-Ban RB2180',
-    desc: 'Lente marrom, haste marrom claro polido. Clássico e atemporal.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/oculos-de-sol-ray-ban-rb2180-616613-cor-da-lente-marron-cor-da-haste-marrom-claro-polido-cor-da-moldura-marrom-claro-cor-da-moldura-marrom-claro-polido/p/MLB41540118?matt_event_ts=1773411973279&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=b840be4d-28c0-4b29-9ad9-86e61dd8f006',
-    slug: 'rayban-rb2180'
+    emoji: '🐶', title: 'Kit Amigurumi Snoopy e Woodstock com Receita',
+    desc: 'Coleção Peanuts — fios e receita para fazer os personagens.',
+    price: 'Ver preço →', link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BG1uGFxqtLoFbvEal98Tzyh35MxN9iDKJ4qYaznRQ7nvvults%2BYLtbXAQrD1hXIL9GO5vyhkXIbZ0K1ph%2B%2BRMym%2FlKvAvt3vMl4tBtyBu8vZf3beQrrm8pLVTatZEbQFv3XMEY3Xyz8iRJz8OLtKRXnanIofSMMYPMYvdnYwcmYILoHugedEwofDY23yxsDg0MEe9WUKFYM8CF%2FqHA%3D%3D',
+    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Coleção', slug: 'kit-snoopy-woodstock'
   },
   {
-    emoji: '🌿',
-    bg: 'linear-gradient(135deg, #e8f5e9 0%, #f9dde2 100%)',
-    badge: 'Bem-estar',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Difusor Elétrico de Ambiente 30ml',
-    desc: 'Bivolt, branco. Aromaterapia para transformar seu espaço.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/difusor-eletrico-de-ambiente-bivolt-30ml-branco-grupo-dj-morch/p/MLB47171688?matt_event_ts=1773411976554&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=c7188757-ae9d-4f3a-9b39-d933e8652340',
-    slug: 'difusor-eletrico'
+    emoji: '🪝', title: 'Kit 8 Agulhas de Crochê Ergonômicas',
+    desc: 'Cabo emborrachado soft, 2mm a 5,5mm — conforto para criar.',
+    price: 'Ver preço →', link: 'https://www.amazon.com.br/dp/B0G1CXFP8C?tag=ivonel27-20',
+    platform: 'Amazon', platformIcon: '📦', badge: 'Essencial', slug: 'agulhas-croche-ergonomicas'
   },
   {
-    emoji: '🧦',
-    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
-    badge: 'Kit',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Kit 12 Pares Meias Puma',
-    desc: 'Sapatilha invisível esportiva — barato e de qualidade.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/kit-12-pares-meias-esportiva-sapatilha-invisivel-puma-barato/up/MLBU3351354108?pdp_filters=item_id%3AMLB5552501948&matt_event_ts=1773411979941&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=3e59aabd-3e81-4d84-9fe0-d3229eaebf77',
-    slug: 'meias-puma-kit'
-  },
-  {
-    emoji: '🔌',
-    bg: 'linear-gradient(135deg, #e8f0fe 0%, #f9dde2 100%)',
-    badge: 'Smart',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Tomada Inteligente Wi-Fi',
-    desc: 'Universal, smart home. Controle tudo pelo celular.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/tomada-inteligente-wi-fi-universal-smart-cor-branco/p/MLB47086075#wid=MLB4463339833',
-    slug: 'tomada-wifi-smart'
-  },
-  {
-    emoji: '🛏️',
-    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8d8 100%)',
-    badge: 'Casa',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Jogo de Lençol Casal 400 Fios',
-    desc: 'Percal 3 peças, 30cm de altura. Sono de qualidade começa aqui.',
-    price: 'Ver preço →',
-    link: 'https://produto.mercadolivre.com.br/MLB-2642136858-jogo-de-lencol-casal-3-pecas-400-fios-percal-30cm-altura-_JM?searchVariation=174511729422&matt_event_ts=1773411991163&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=f274ffc6-b057-41e5-a788-ae68f63b4b99',
-    slug: 'lencol-casal-400fios'
-  },
-  {
-    emoji: '🚗',
-    bg: 'linear-gradient(135deg, #fdf3e3 0%, #f5ede4 100%)',
-    badge: 'Tech',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Adaptador Mini Xuda CarPlay Sem Fio',
-    desc: 'Android Auto e Apple CarPlay wireless. Conecte sem fios.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/adaptador-mini-xuda-para-carplay-sem-fio-e-android-auto/up/MLBU3272821621?pdp_filters=item_id%3AMLB5478283708&matt_event_ts=1773412065876&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=8cfd9894-3c15-49ce-9bae-10a96b7c013a',
-    slug: 'carplay-sem-fio'
-  },
-  {
-    emoji: '🎧',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #e8f0fe 100%)',
-    badge: 'Acessório',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Almofadas JBL Tune 520BT / 510BT',
-    desc: 'Par de espumas compatíveis para fone JBL. Conforto renovado.',
-    price: 'Ver preço →',
-    link: 'https://produto.mercadolivre.com.br/MLB-4044928335-par-almofadas-espumas-compativeis-jbl-tune-520bt-510bt-_JM?searchVariation=187690025601&matt_event_ts=1773411946451&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=735cbfbb-3afb-47a0-ab2b-2bd5bd319b36',
-    slug: 'almofadas-jbl-tune'
-  },
-  {
-    emoji: '👟',
-    bg: 'linear-gradient(135deg, #f5ede4 0%, #fde8e8 100%)',
-    badge: 'Moda',
-    platform: 'Mercado Livre',
-    platformIcon: '🛍️',
-    title: 'Tênis Casual Kappa Zenit Masculino',
-    desc: 'Estilo e conforto para o cotidiano.',
-    price: 'Ver preço →',
-    link: 'https://produto.mercadolivre.com.br/MLB-5408593708-tnis-casual-kappa-zenit-masculino-_JM?searchVariation=192828328481&matt_event_ts=1773411944072&matt_d2id=f94167ba-d67a-43bf-8c13-faa23cc1a8e2&matt_tracing_id=e1a83407-1852-4477-b9cb-052d5de9075e',
-    slug: 'tenis-kappa-zenit'
-  },
-  {
-    emoji: '🛒',
-    bg: 'linear-gradient(135deg, #fde8d8 0%, #fdf3e3 100%)',
-    badge: 'Amazon',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Produto Amazon 1',
-    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B09RL3X7R9?tag=ivonel27-20',
-    slug: 'amazon-b09rl3x7r9'
-  },
-  {
-    emoji: '🛒',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #fde8d8 100%)',
-    badge: 'Amazon',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Produto Amazon 2',
-    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B0F158B1BR?tag=ivonel27-20',
-    slug: 'amazon-b0f158b1br'
-  },
-  {
-    emoji: '🛒',
-    bg: 'linear-gradient(135deg, #f5ede4 0%, #f9dde2 100%)',
-    badge: 'Amazon',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Produto Amazon 3',
-    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B0FWCTHSWQ?tag=ivonel27-20',
-    slug: 'amazon-b0fwcthswq'
-  },
-  {
-    emoji: '🛒',
-    bg: 'linear-gradient(135deg, #fde8e8 0%, #f5ede4 100%)',
-    badge: 'Amazon',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Produto Amazon 4',
-    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B076N2S8FV?tag=ivonel27-20',
-    slug: 'amazon-b076n2s8fv'
-  },
-  {
-    emoji: '🛒',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #fde8d8 100%)',
-    badge: 'Amazon',
-    platform: 'Amazon',
-    platformIcon: '📦',
-    title: 'Produto Amazon 5',
-    desc: 'Link Amazon — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B0CC6FHCM2?tag=ivonel27-20',
-    slug: 'amazon-b0cc6fhcm2'
-  },
-  {
-    emoji: '🛍️',
-    bg: 'linear-gradient(135deg, #fff3e0 0%, #f9dde2 100%)',
-    badge: 'Shopee',
-    platform: 'Shopee',
-    platformIcon: '🧡',
-    title: 'Produto Shopee 1',
-    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://shopee.com.br/product/321998304/23494296658?mmp_pid=an_18314860902',
-    slug: 'shopee-321998304-1'
-  },
-  {
-    emoji: '🛍️',
-    bg: 'linear-gradient(135deg, #f9dde2 0%, #fff3e0 100%)',
-    badge: 'Shopee',
-    platform: 'Shopee',
-    platformIcon: '🧡',
-    title: 'Produto Shopee 2',
-    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://shopee.com.br/product/422716071/18063375744?mmp_pid=an_18314860902',
-    slug: 'shopee-422716071-2'
-  },
-  {
-    emoji: '🛍️',
-    bg: 'linear-gradient(135deg, #fde8d8 0%, #fff3e0 100%)',
-    badge: 'Shopee',
-    platform: 'Shopee',
-    platformIcon: '🧡',
-    title: 'Produto Shopee 3',
-    desc: 'Link Shopee — atualize título e descrição conforme o produto.',
-    price: 'Ver preço →',
-    link: 'https://shopee.com.br/product/1649541164/58201815473?mmp_pid=an_18314860902',
-    slug: 'shopee-1649541164-3'
+    emoji: '🐱', title: 'Kit Amigurumi Hello Kitty Círculo',
+    desc: 'Fios amarelos oficiais Círculo para fazer a Hello Kitty.',
+    price: 'Ver preço →', link: 'https://www.amazon.com.br/dp/B0DX8H1L94?tag=ivonel27-20',
+    platform: 'Amazon', platformIcon: '📦', badge: 'Cute', slug: 'kit-hello-kitty-circulo'
   }
 ];
 
 // ────────────────────────────────────────────────────────────
-// AFFILIATE LINK BUILDER
+// DETECTAR PLATAFORMA — só para o indicador visual
 // ────────────────────────────────────────────────────────────
 function detectPlatform(url) {
   if (url.includes('mercadolivre') || url.includes('mercadolibre') || url.includes('mlstatic')) return 'mercadolivre';
@@ -1322,32 +403,23 @@ function detectPlatform(url) {
   return null;
 }
 
-function buildAffiliateLink(url, platform) {
-  try {
-    if (platform === 'amazon') {
-      // Amazon: mantém a URL original com a tag de afiliado
-      const obj = new URL(url);
-      obj.searchParams.set('tag', AFFILIATE.amazon);
-      return obj.toString();
-    }
-    if (platform === 'mercadolivre') {
-      // Mercado Livre: redireciona pelo perfil social de afiliado (padrão ivonel27)
-      // Codifica a URL original no parâmetro ref
-      const encoded = btoa(encodeURIComponent(url)).replace(/=/g, '');
-      return `https://www.mercadolivre.com.br/social/${AFFILIATE.mercadolivre}?matt_word=${AFFILIATE.mercadolivre}&matt_tool=${AFFILIATE.mercadolivreToolId}&forceInApp=true&ref_url=${encodeURIComponent(url)}`;
-    }
-    if (platform === 'shopee') {
-      // Shopee: adiciona o mmp_pid de afiliado
-      const obj = new URL(url);
-      obj.searchParams.set('mmp_pid', AFFILIATE.shopee);
-      return obj.toString();
-    }
-  } catch(_) {}
-  return url;
+// ────────────────────────────────────────────────────────────
+// WEBHOOK n8n — envia URL, recebe shortUrl encurtado
+// ────────────────────────────────────────────────────────────
+async function generateViaWebhook(url) {
+  const res = await fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url })
+  });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const data = await res.json();
+  if (!data.shortUrl) throw new Error('shortUrl ausente na resposta');
+  return data; // { shortUrl, longUrl, slug }
 }
 
 // ────────────────────────────────────────────────────────────
-// COOKIES: recently viewed products
+// COOKIES: histórico de produtos visitados
 // ────────────────────────────────────────────────────────────
 const COOKIE_KEY = 'tself_visited';
 
@@ -1370,10 +442,10 @@ function addVisited(product) {
   saveCookieVisited(visited);
 }
 
-function addVisitedFromUrl(url, platform, finalLink) {
+function addVisitedFromUrl(url, platform, shortUrl) {
   const visited = getCookieVisited().filter(v => v.slug !== url);
   const domain = platform.charAt(0).toUpperCase() + platform.slice(1);
-  visited.unshift({ slug: url, title: 'Produto visitado — ' + domain, platform: domain, link: finalLink });
+  visited.unshift({ slug: url, title: 'Produto visitado — ' + domain, platform: domain, link: shortUrl });
   saveCookieVisited(visited);
   renderVisited();
 }
@@ -1394,61 +466,7 @@ function renderVisited() {
 }
 
 // ────────────────────────────────────────────────────────────
-// LISTA CURADA — edite aqui para adicionar/remover produtos
-// ────────────────────────────────────────────────────────────
-const CURATED = [
-  {
-    emoji: '🧶',
-    title: 'Fio Barbante Barroco Natural Círculo 700g',
-    desc: 'Fio cru para crochê e artesanato — qualidade Círculo.',
-    price: 'Ver preço →',
-    link: 'https://shopee.com.br/product/1151968970/22498165952?mmp_pid=an_18314860902',
-    platform: 'Shopee', platformIcon: '🧡', badge: 'Favorito', slug: 'barbante-barroco-circulo'
-  },
-  {
-    emoji: '🪡',
-    title: 'Mini Máquina de Costura 12 Pontos Bivolt',
-    desc: 'Multifuncional doméstica — perfeita para projetos em casa.',
-    price: 'Ver preço →',
-    link: 'https://shopee.com.br/product/1041517511/21497495059?mmp_pid=an_18314860902',
-    platform: 'Shopee', platformIcon: '🧡', badge: 'Recomendo', slug: 'maquina-costura-12pontos'
-  },
-  {
-    emoji: '🎨',
-    title: 'Kit 8 Linhas Amigurumi Tradicional 254m',
-    desc: 'Escolha as cores — ideal para amigurumis e crochê.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BEblprn2JbP%2BxqFzd6D4eQxtDixVAuuO8qnLgCyhgZ4YwYnTm9S%2FampeM5VxPNFuRS2d9EHL8zcHaLHGCU2fle61K9n8oXTWeJgdu9X3gjoAXv4%2BEdgrTWwz9PWesqzqvlMFp4z8w6cTVxNHYMLUvI7k%2Bh1Rep0KPLlc6%2FWosb8pQWzGHia2YInoGKvcZozpzdMIbg%3D%3D',
-    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Kit', slug: 'kit-linhas-amigurumi'
-  },
-  {
-    emoji: '🐶',
-    title: 'Kit Amigurumi Snoopy e Woodstock com Receita',
-    desc: 'Coleção Peanuts — fios e receita para fazer os personagens.',
-    price: 'Ver preço →',
-    link: 'https://www.mercadolivre.com.br/social/ivonel27?matt_word=ivonel27&matt_tool=50399659&forceInApp=true&ref=BG1uGFxqtLoFbvEal98Tzyh35MxN9iDKJ4qYaznRQ7nvvults%2BYLtbXAQrD1hXIL9GO5vyhkXIbZ0K1ph%2B%2BRMym%2FlKvAvt3vMl4tBtyBu8vZf3beQrrm8pLVTatZEbQFv3XMEY3Xyz8iRJz8OLtKRXnanIofSMMYPMYvdnYwcmYILoHugedEwofDY23yxsDg0MEe9WUKFYM8CF%2FqHA%3D%3D',
-    platform: 'Mercado Livre', platformIcon: '🛍️', badge: 'Coleção', slug: 'kit-snoopy-woodstock'
-  },
-  {
-    emoji: '🪝',
-    title: 'Kit 8 Agulhas de Crochê Ergonômicas',
-    desc: 'Cabo emborrachado soft, 2mm a 5,5mm — conforto para criar.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B0G1CXFP8C?tag=ivonel27-20',
-    platform: 'Amazon', platformIcon: '📦', badge: 'Essencial', slug: 'agulhas-croche-ergonomicas'
-  },
-  {
-    emoji: '🐱',
-    title: 'Kit Amigurumi Hello Kitty Círculo',
-    desc: 'Fios amarelos oficiais Círculo para fazer a Hello Kitty.',
-    price: 'Ver preço →',
-    link: 'https://www.amazon.com.br/dp/B0DX8H1L94?tag=ivonel27-20',
-    platform: 'Amazon', platformIcon: '📦', badge: 'Cute', slug: 'kit-hello-kitty-circulo'
-  }
-];
-
-// ────────────────────────────────────────────────────────────
-// RENDER CARD
+// RENDER CARDS
 // ────────────────────────────────────────────────────────────
 const BG_POOL = [
   'linear-gradient(135deg, #fde8d8 0%, #f9dde2 100%)',
@@ -1487,57 +505,32 @@ function cardHTML(item, index, isHistory) {
     </a>`;
 }
 
-// ────────────────────────────────────────────────────────────
-// RENDER PRODUCTS — histórico primeiro + curadoria embaralhada
-// ────────────────────────────────────────────────────────────
 function renderProducts() {
   const grid = document.getElementById('products-grid');
-
-  // 1. Histórico do visitante (cookies)
   const visited = getCookieVisited();
   const histSlugs = new Set(visited.map(v => v.slug));
   const historyItems = visited.slice(0, 3).map(v => ({
-    slug: v.slug,
-    title: v.title,
-    desc: '',
-    price: 'Ver preço →',
-    thumbnail: null,
+    slug: v.slug, title: v.title, desc: '', price: 'Ver preço →', thumbnail: null,
     emoji: v.platform === 'Amazon' ? '📦' : v.platform === 'Shopee' ? '🧡' : '🛍️',
-    link: v.link,
-    platform: v.platform || 'Mercado Livre',
+    link: v.link, platform: v.platform || 'Mercado Livre',
     platformIcon: v.platform === 'Amazon' ? '📦' : v.platform === 'Shopee' ? '🧡' : '🛍️',
     badge: 'Visto por você'
   }));
-
-  // 2. Curadoria — exclui os que já aparecem no histórico e embaralha
   const remaining = CURATED
     .filter(p => !histSlugs.has(p.slug))
     .sort(() => Math.random() - 0.5)
     .slice(0, 6 - historyItems.length);
-
   const allItems = [...historyItems, ...remaining];
 
-  // 3. Atualiza label da seção
-  const labelEl = document.querySelector('#produtos .section-label');
-  if (labelEl) {
-    labelEl.textContent = historyItems.length > 0
-      ? '✦ baseado em você + curadoria'
-      : '✦ favoritos da curadoria';
-  }
+  const labelEl = document.getElementById('products-label');
+  if (labelEl) labelEl.textContent = historyItems.length > 0 ? '✦ baseado em você + curadoria' : '✦ favoritos da curadoria';
 
-  // 4. Renderiza
-  grid.innerHTML = allItems.map((item, i) =>
-    cardHTML(item, i, historyItems.some(h => h.slug === item.slug))
-  ).join('');
-
-  // 5. Track cliques — salva no histórico ao clicar
+  grid.innerHTML = allItems.map((item, i) => cardHTML(item, i, historyItems.some(h => h.slug === item.slug))).join('');
   grid.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
-      const platform = card.dataset.platform || 'Mercado Livre';
-      addVisitedFromUrl(card.dataset.link, platform.toLowerCase(), card.dataset.link);
+      addVisitedFromUrl(card.dataset.link, (card.dataset.platform || 'Mercado Livre').toLowerCase(), card.dataset.link);
     });
   });
-
   observeFadeIns();
 }
 
@@ -1558,15 +551,13 @@ document.getElementById('paste-btn').addEventListener('click', async () => {
 });
 
 // ────────────────────────────────────────────────────────────
-// PLATFORM AUTO-DETECT + INDICATOR
+// PLATFORM INDICATOR
 // ────────────────────────────────────────────────────────────
 const PLATFORM_LABELS = {
   mercadolivre: '🛍️ Mercado Livre detectado',
   amazon:       '📦 Amazon detectada',
   shopee:       '🧡 Shopee detectada'
 };
-
-let currentPlatform = null;
 
 function updateIndicator(platform) {
   const el = document.getElementById('platform-indicator');
@@ -1579,20 +570,27 @@ function updateIndicator(platform) {
 }
 
 document.getElementById('link-input').addEventListener('input', function() {
-  const detected = detectPlatform(this.value);
-  currentPlatform = detected;
-  updateIndicator(detected);
+  updateIndicator(detectPlatform(this.value));
   document.getElementById('result-box').classList.remove('visible');
   document.getElementById('error-msg').classList.remove('visible');
 });
 
 // ────────────────────────────────────────────────────────────
-// GENERATE LINK
+// GENERATE LINK — via webhook n8n
 // ────────────────────────────────────────────────────────────
-document.getElementById('generate-btn').addEventListener('click', () => {
+const generateBtn = document.getElementById('generate-btn');
+const errorEl     = document.getElementById('error-msg');
+const resultBox   = document.getElementById('result-box');
+
+function setLoading(on) {
+  generateBtn.disabled = on;
+  generateBtn.innerHTML = on
+    ? '<span class="spinner"></span> Processando…'
+    : 'Gerar link de indicação ✨';
+}
+
+generateBtn.addEventListener('click', async () => {
   const input = document.getElementById('link-input').value.trim();
-  const errorEl = document.getElementById('error-msg');
-  const resultBox = document.getElementById('result-box');
 
   errorEl.classList.remove('visible');
   resultBox.classList.remove('visible');
@@ -1610,7 +608,6 @@ document.getElementById('generate-btn').addEventListener('click', () => {
   }
 
   const platform = detectPlatform(input);
-  currentPlatform = platform;
   updateIndicator(platform);
 
   if (!platform) {
@@ -1619,13 +616,22 @@ document.getElementById('generate-btn').addEventListener('click', () => {
     return;
   }
 
-  const finalLink = buildAffiliateLink(input, platform);
+  setLoading(true);
+  try {
+    const { shortUrl } = await generateViaWebhook(input);
 
-  document.getElementById('result-link').textContent = finalLink;
-  document.getElementById('open-btn').href = finalLink;
-  resultBox.classList.add('visible');
+    document.getElementById('result-link').textContent = shortUrl;
+    document.getElementById('open-btn').href = shortUrl;
+    resultBox.classList.add('visible');
 
-  addVisitedFromUrl(input, platform, finalLink);
+    addVisitedFromUrl(input, platform, shortUrl);
+  } catch(err) {
+    errorEl.textContent = '❗ Não foi possível gerar o link. Tente novamente em instantes.';
+    errorEl.classList.add('visible');
+    console.error('[webhook]', err);
+  } finally {
+    setLoading(false);
+  }
 });
 
 // ────────────────────────────────────────────────────────────
@@ -1640,15 +646,10 @@ function showToast(msg) {
 
 document.getElementById('copy-btn').addEventListener('click', () => {
   const link = document.getElementById('result-link').textContent;
-  navigator.clipboard.writeText(link).then(() => {
-    showToast('Link copiado! 🌸');
-  }).catch(() => {
+  navigator.clipboard.writeText(link).then(() => showToast('Link copiado! 🌸')).catch(() => {
     const ta = document.createElement('textarea');
-    ta.value = link;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
+    ta.value = link; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
     showToast('Link copiado! 🌸');
   });
 });
@@ -1656,20 +657,16 @@ document.getElementById('copy-btn').addEventListener('click', () => {
 // ────────────────────────────────────────────────────────────
 // NAVBAR SCROLL
 // ────────────────────────────────────────────────────────────
-const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
 }, { passive: true });
 
 // ────────────────────────────────────────────────────────────
-// INTERSECTION OBSERVER — fade-in
+// FADE-IN OBSERVER
 // ────────────────────────────────────────────────────────────
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); }
   });
 }, { threshold: 0.12 });
 
@@ -1680,14 +677,10 @@ function observeFadeIns() {
 // ────────────────────────────────────────────────────────────
 // INIT
 // ────────────────────────────────────────────────────────────
-renderProducts(); // histórico do visitante + curadoria embaralhada
+renderProducts();
 renderVisited();
 observeFadeIns();
-
-// Trigger hero animations on load
-setTimeout(() => {
-  document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
-}, 100);
+setTimeout(() => { document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible')); }, 100);
 </script>
 </body>
 </html>
